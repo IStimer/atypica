@@ -1,0 +1,19 @@
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  color: #1a1a1a;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.flex {
+  display: flex;
+}
+
+.wrapper {
+  width: 97.5vw;
+  position: absolute;
+  left: 1.25vw;
+}

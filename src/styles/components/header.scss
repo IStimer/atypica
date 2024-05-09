@@ -1,0 +1,20 @@
+.header {
+  padding-top: 0.833vw;
+  font-size: 0.833vw;
+  font-weight: 500;
+
+  &--nav {
+    display: flex;
+    justify-content: space-between;
+
+    &__col {
+      flex-direction: column;
+    }
+  }
+  &--banner {
+    width: 100%;
+    position: relative;
+    top: -1.833vw;
+    z-index: -1;
+  }
+}
