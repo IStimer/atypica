@@ -2,8 +2,8 @@ import React from 'react';
 
 const Concept = () => {
     return (
-        <section className="studio-section">
-            <div className="studio-section__content">
+        <section className="studio-section flex">
+            <div className="studio-section__content main-side flex">
                 <h2 className="studio-section__title">Digital studio</h2>
                 <p className="studio-section__description">
                     Chez Atypica, nous savons que votre temps est précieux. C'est pourquoi nous mettons un point
@@ -11,8 +11,8 @@ const Concept = () => {
                     créativité nécessaires pour prendre en charge tout, de la recherche et la planification au design
                     personnalisé et au développement. Ainsi, vous êtes libéré de la charge de la microgestion.
                 </p>
-                <div>©2024</div>
             </div>
+            <div>©2024</div>
         </section>
     );
 }

@@ -1,4 +1,13 @@
 .studio-section {
   padding: 5vw 0;
   border-bottom: solid 1px $color-dark-grey;
+  justify-content: space-between;
+
+  &__content {
+    gap: 20%;
+  }
+
+  &__description {
+    width: 60%;
+  }
 }
