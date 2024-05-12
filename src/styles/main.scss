@@ -1,14 +1,9 @@
 // Base
 @import
 'base/reset',
+'base/colors',
 'base/typography',
-'base/global',
-'base/colors';
-
-// Layout
-@import
-'layout/header',
-'layout/footer';
+'base/global';
 
 // Components
 @import
@@ -21,3 +16,9 @@
 'abstracts/functions';
 
 // Pages
+
+// Sections
+
+@import 'sections/container-canvas-sea',
+'sections/studio',
+'sections/work';
