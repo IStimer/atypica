@@ -1,24 +1,18 @@
 // Base
-@import
-'base/reset',
-'base/colors',
-'base/typography',
-'base/global';
+@import 'base/reset';
+@import 'base/colors';
+@import 'base/typography';
+@import 'base/global';
 
 // Components
-@import
-'components/header';
+@import 'components/header';
 
 // Utils
-@import
-'abstracts/variables',
-'abstracts/mixins',
-'abstracts/functions';
-
-// Pages
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
 
 // Sections
-
-@import 'sections/container-canvas-sea',
-'sections/studio',
-'sections/work';
+@import 'sections/container-canvas-sea';
+@import 'sections/studio';
+@import 'sections/work';

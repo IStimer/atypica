@@ -33,7 +33,7 @@
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
     "postcss-loader": "^8.1.1",
-    "sass": "^1.77.0",
+    "sass": "^1.77.1",
     "sass-loader": "^14.2.1",
     "vite": "^5.2.0",
     "vite-plugin-string": "^1.2.3"

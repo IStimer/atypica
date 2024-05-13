@@ -2,12 +2,14 @@
   padding: 5vw 0;
   border-bottom: solid 1px $color-dark-grey;
   justify-content: space-between;
+  font-weight: 600;
 
   &__content {
     gap: 20%;
+    justify-content: space-between;
   }
 
   &__description {
-    width: 60%;
+    width: 55%;
   }
 }

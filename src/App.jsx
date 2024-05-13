@@ -8,6 +8,8 @@ import ContainerCanvasSea from './sections/ContainerCanvasSea.jsx';
 import Concept from './sections/Concept.jsx';
 import Work from './sections/Work.jsx';
 import Studio from "./sections/Studio.jsx";
+import './styles/main.scss';
+
 
 function App() {
     return (
