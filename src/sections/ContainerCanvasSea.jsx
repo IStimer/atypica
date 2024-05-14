@@ -9,26 +9,25 @@ import waterFragmentShader from '../shaders/water/fragment.glsl';
 const Water = ( { hover }) => {
 
     useEffect(() => {
-        const gui = new GUI();
-        gui.add(uniforms.current.uBigWavesElevation, 'value', 0, 1, 0.01).name('Big Wave Elevation');
-        gui.add(uniforms.current.uBigWavesFrequency.value, 'x', 0, 10, 0.1).name('Big Wave Frequency X');
-        gui.add(uniforms.current.uBigWavesFrequency.value, 'y', 0, 10, 0.1).name('Big Wave Frequency Y');
-        gui.add(uniforms.current.uBigWavesSpeed, 'value', 0, 2, 0.01).name('Big Wave Speed');
-        gui.add(uniforms.current.uSmallWavesElevation, 'value', 0, 1, 0.01).name('Small Wave Elevation');
-        gui.add(uniforms.current.uSmallWavesFrequency, 'value', 0, 5, 0.1).name('Small Wave Frequency');
-        gui.add(uniforms.current.uSmallWavesSpeed, 'value', 0, 1, 0.01).name('Small Wave Speed');
-        gui.add(uniforms.current.uSmallIterations, 'value', 1, 8).step(1).name('Small Iterations');
-        gui.addColor(uniforms.current.uDepthColor, 'value').name('Depth Color');
-        gui.addColor(uniforms.current.uSurfaceColor, 'value').name('Surface Color');
-        gui.add(uniforms.current.uColorOffset, 'value', 0, 1, 0.01).name('Color Offset');
-        gui.add(uniforms.current.uColorMultiplier, 'value', 0, 10, 0.1).name('Color Multiplier');
+        const gui = new GUI()
+        gui.add(uniforms.current.uBigWavesElevation, 'value', 0, 1, 0.01).name('Big Wave Elevation')
+        gui.add(uniforms.current.uBigWavesFrequency.value, 'x', 0, 10, 0.1).name('Big Wave Frequency X')
+        gui.add(uniforms.current.uBigWavesFrequency.value, 'y', 0, 10, 0.1).name('Big Wave Frequency Y')
+        gui.add(uniforms.current.uBigWavesSpeed, 'value', 0, 2, 0.01).name('Big Wave Speed')
+        gui.add(uniforms.current.uSmallWavesElevation, 'value', 0, 1, 0.01).name('Small Wave Elevation')
+        gui.add(uniforms.current.uSmallWavesFrequency, 'value', 0, 5, 0.1).name('Small Wave Frequency')
+        gui.add(uniforms.current.uSmallWavesSpeed, 'value', 0, 1, 0.01).name('Small Wave Speed')
+        gui.add(uniforms.current.uSmallIterations, 'value', 1, 8).step(1).name('Small Iterations')
+        gui.addColor(uniforms.current.uDepthColor, 'value').name('Depth Color')
+        gui.addColor(uniforms.current.uSurfaceColor, 'value').name('Surface Color')
+        gui.add(uniforms.current.uColorOffset, 'value', 0, 1, 0.01).name('Color Offset')
+        gui.add(uniforms.current.uColorMultiplier, 'value', 0, 10, 0.1).name('Color Multiplier')
 
-        return () => gui.destroy();
-    }, []);
+        return () => gui.destroy()
+    }, [])
 
-
-    const meshRef = useRef();
-    const { size, camera } = useThree();
+    const meshRef = useRef()
+    const { size, camera } = useThree()
     const uniforms = useRef({
         uTime: { value: 0 },
         uBigWavesElevation: { value: 0.2 },
@@ -42,21 +41,23 @@ const Water = ( { hover }) => {
         uSurfaceColor: { value: new THREE.Color('#9bd8ff') },
         uColorOffset: { value: 0.08 },
         uColorMultiplier: { value: 5 }
-    });
+    })
 
-    const targetIterations = useRef(4);
+    const targetIterations = useRef(4)
     const targetFrequency = useRef(3)
 
     useEffect(() => {
-        targetIterations.current = hover ? 1 : 4;
-        targetFrequency.current = hover ? 1.5 : 3;  // Set target frequency for small waves based on hover state
-    }, [hover]);
+        targetIterations.current = hover ? 1 : 4
+        targetFrequency.current = hover ? 1.5 : 3
+    }, [hover])
 
     useFrame(({ clock }) => {
         uniforms.current.uTime.value = clock.getElapsedTime();
-        uniforms.current.uSmallIterations.value += (targetIterations.current - uniforms.current.uSmallIterations.value) * 0.08;
-        uniforms.current.uSmallWavesFrequency.value += (targetFrequency.current - uniforms.current.uSmallWavesFrequency.value) * 0.08;
-    });
+        const easingFactor = 0.15;
+        uniforms.current.uSmallIterations.value += (targetIterations.current - uniforms.current.uSmallIterations.value)
+        uniforms.current.uSmallWavesFrequency.value += (targetFrequency.current - uniforms.current.uSmallWavesFrequency.value) * easingFactor
+    })
+
 
     return (
         <mesh ref={meshRef} rotation-x={-Math.PI * 0.5}>
@@ -67,12 +68,8 @@ const Water = ( { hover }) => {
                 uniforms={uniforms.current}
             />
         </mesh>
-    );
-};
-
-const Scene = () => {
-    return <Water />;
-};
+    )
+}
 
 const ContainerCanvasSea = () => {
     const [hover, setHover] = useState(false);
@@ -88,7 +85,7 @@ const ContainerCanvasSea = () => {
                 <Water hover={hover} />
             </Canvas>
         </section>
-    );
-};
+    )
+}
 
-export default ContainerCanvasSea;
+export default ContainerCanvasSea
