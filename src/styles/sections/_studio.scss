@@ -3,13 +3,35 @@
   border-bottom: solid 1px $color-dark-grey;
   justify-content: space-between;
   font-weight: 600;
+  flex-wrap: wrap;
 
   &__content {
-    gap: 20%;
     justify-content: space-between;
+
+    &--secondary {
+      padding-top: 5vw;
+      gap: 5vw;
+    }
   }
 
   &__description {
     width: 55%;
+  }
+
+  &__img {
+    width: 60%
+  }
+
+  &__item-list {
+    flex-direction: column;
+    border-left: solid 1px $color-dark-grey;
+    height: fit-content;
+    padding-left: 1vw;
+  }
+
+  &__title {
+    &--secondary {
+    margin-bottom: 2.5vw;
+    }
   }
 }

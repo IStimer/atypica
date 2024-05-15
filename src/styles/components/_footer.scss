@@ -1,0 +1,19 @@
+.footer {
+  padding: 5vw 0;
+
+  &__nav {
+    gap: 5vw;
+    display: flex;
+  }
+
+  &__col {
+    flex-direction: column;
+    border-left: solid 1px $color-dark-grey;
+    padding-left: 1vw;
+  }
+
+  &__item {
+    font-size: 1.5vw;
+    font-weight: 600;
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import img from "../img/full1.jpg";
 
 const Studio = () => {
     return (
@@ -9,6 +10,15 @@ const Studio = () => {
                     Un studio qui casse les codes ! Chez nous, pas de sites web ennuyeux ni d'applications ordinaires -
                     nous sommes spécialisés dans la création d’expériences numériques folles et des plus atypiques ;)
                 </p>
+            </div>
+            <div className="flex studio-section__content--secondary">
+            <img className="studio-section__img" src={img} alt="Visuel de l'équipe"/>
+                <div className="flex studio-section__item-list">
+                    <div className="studio-section__title--secondary">Services</div>
+                    <div className="studio-section__item">Web design</div>
+                    <div className="studio-section__item">Web development</div>
+                </div>
+
             </div>
         </section>
     );
