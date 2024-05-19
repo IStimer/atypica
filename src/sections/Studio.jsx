@@ -1,11 +1,14 @@
 import React from 'react';
 import img from "../img/full1.jpg";
+import arrow from "../svgs/arrow.svg";
 
 const Studio = () => {
     return (
         <section className="studio-section flex">
             <div className="studio-section__content main-side flex">
-                <h2 className="studio-section__title">Le studio</h2>
+                <h2 className="studio-section__title">Le studio
+                    <img className="studio-section__arrow" src={arrow} alt="arrow"/>
+                </h2>
                 <p className="studio-section__description">
                     Un studio qui casse les codes ! Chez nous, pas de sites web ennuyeux ni d'applications ordinaires -
                     nous sommes spécialisés dans la création d’expériences numériques folles et des plus atypiques ;)

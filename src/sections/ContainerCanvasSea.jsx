@@ -53,7 +53,7 @@ const Water = ( { hover }) => {
 
     useFrame(({ clock }) => {
         uniforms.current.uTime.value = clock.getElapsedTime();
-        const easingFactor = 0.15;
+        const easingFactor = 0.35;
         uniforms.current.uSmallIterations.value += (targetIterations.current - uniforms.current.uSmallIterations.value)
         uniforms.current.uSmallWavesFrequency.value += (targetFrequency.current - uniforms.current.uSmallWavesFrequency.value) * easingFactor
     })

@@ -1,15 +1,9 @@
-// App.jsx
-import React, { useState, useEffect } from 'react';
-import Wrapper from './components/Wrapper'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Banner from './sections/Banner.jsx'
-import ContainerCanvasSea from './sections/ContainerCanvasSea.jsx'
-import Concept from './sections/Concept.jsx'
-import Work from './sections/Work.jsx'
-import Studio from './sections/Studio.jsx'
-import Preloader from './components/Preloader'
-import './styles/main.scss'
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home.jsx';
+import StudioPage from './Studio.jsx';
+import './styles/main.scss';
+import Preloader from "./components/Preloader.jsx";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -22,21 +16,17 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <Preloader isLoading={isLoading} setIsLoading={setIsLoading} />
-            <div className={`content ${isLoading ? 'hidden' : 'visible'}`}>
-                <Wrapper>
-                    <Header>
-                        <Banner />
-                    </Header>
-                    <ContainerCanvasSea />
-                    <Concept />
-                    <Work />
-                    <Studio />
-                    <Footer />
-                </Wrapper>
+        <Router>
+            <div className="App">
+                <Preloader isLoading={isLoading} setIsLoading={setIsLoading} />
+                <div className={`content ${isLoading ? 'hidden' : 'visible'}`}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/studio" element={<StudioPage />} />
+                </Routes>
+                </div>
             </div>
-        </div>
+        </Router>
     );
 }
 

@@ -6,8 +6,30 @@ body {
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  display: inline-block;
+  position: relative;
+  color: $color-dark-grey;
+  text-decoration: none;
+  width: fit-content;
+
+  &::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  border-radius: 5px;
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  background: currentcolor;
+  transform-origin: bottom right;
+  transition: transform 0.5s ease-out;
+}
+
+  &:hover::after {
+         transform: scaleX(1);
+         transform-origin: bottom left;
+       }
 }
 
 .flex {

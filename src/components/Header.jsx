@@ -1,17 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header({ children }) {
     return (
         <header className="header">
             <nav className="header--nav">
                 <div>
-                    atypica
+                    <Link to="/">atypica</Link>
+
                 </div>
                 <div>
                     digital studio
                 </div>
                 <div className="header--nav__col flex">
-                    <a href="/studio">studio</a>
+                    <Link to="/studio">Studio</Link>
                     <a href="/contact">contact</a>
                 </div>
                 <div className="header--nav__col flex">
