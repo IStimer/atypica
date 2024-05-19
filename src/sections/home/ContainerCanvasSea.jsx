@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import GUI from 'lil-gui';
-import waterVertexShader from '../shaders/water/vertex.glsl';
-import waterFragmentShader from '../shaders/water/fragment.glsl';
+import waterVertexShader from '../../shaders/water/vertex.glsl';
+import waterFragmentShader from '../../shaders/water/fragment.glsl';
 
 
 const Water = ( { hover }) => {

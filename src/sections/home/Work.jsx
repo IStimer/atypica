@@ -1,5 +1,5 @@
 import React from 'react';
-import mainLogo from "../assets/svgs/main-logo-atypica-white.svg";
+import mainLogo from "../../assets/svgs/main-logo-atypica-white.svg";
 
 
 const Work = () => {

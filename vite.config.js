@@ -6,6 +6,9 @@ export default defineConfig({
     react(),
     glsl()
   ],
+  optimizeDeps: {
+    include: ['@react-spring/web']
+  },
   css: {
     devSourcemap: true,
   },
