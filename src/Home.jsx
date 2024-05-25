@@ -18,8 +18,8 @@ function Home() {
                     </Header>
                     <ContainerCanvasSea />
                     <Concept />
-                    <Work />
                     <Studio />
+                    <Work />
                     <Footer />
                 </Wrapper>
         </>
