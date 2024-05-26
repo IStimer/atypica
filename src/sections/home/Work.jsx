@@ -61,10 +61,10 @@ const Work = () => {
                             }
                         }
                     }
-                );
-            });
-        });
-    }, []);
+                )
+            })
+        })
+    }, [])
 
     const getColumnImages = (columnIndex) => {
         return duplicatedImages
@@ -77,8 +77,8 @@ const Work = () => {
                         <span className="image-year">{2023 + (index % 2)}</span>
                     </div>
                 </div>
-            ));
-    };
+            ))
+    }
 
     return (
         <section className="work-section">
@@ -94,7 +94,7 @@ const Work = () => {
                 <div className="column column--odd">{getColumnImages(4)}</div>
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default Work;
+export default Work

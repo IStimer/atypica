@@ -13,7 +13,7 @@ export default function Header({ children }) {
                     digital studio
                 </div>
                 <div className="header--nav__col flex">
-                    <Link to="/studio">Studio</Link>
+                    <Link to="/studio">studio</Link>
                     <a href="/contact">contact</a>
                 </div>
                 <div className="header--nav__col flex">
