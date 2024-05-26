@@ -1,6 +1,6 @@
 import React from 'react';
 import img from "../../img/full1.jpg";
-import arrow from "../../svgs/arrow.svg";
+import arrow from "../../assets/svgs/arrow.svg";
 
 
 const Concept = () => {

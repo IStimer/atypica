@@ -1,34 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from '@studio-freight/lenis';
 import imagesLoaded from 'imagesloaded';
-import image1 from '../../img/1.jpg';
-import image2 from '../../img/2.jpg';
-import image3 from '../../img/3.jpg';
-import image4 from '../../img/4.jpg';
-import image5 from '../../img/5.jpg';
-import image6 from '../../img/6.jpg';
-import image7 from '../../img/7.jpg';
-import image8 from '../../img/8.jpg';
-import image9 from '../../img/9.jpg';
-import image10 from '../../img/10.jpg';
-import image11 from '../../img/11.jpg';
-import image12 from '../../img/12.jpg';
-import image13 from '../../img/13.jpg';
-import image14 from '../../img/14.jpg';
-import image15 from '../../img/15.jpg';
-import image16 from '../../img/full1.jpg';
-import image17 from '../../img/full2.jpg';
-import image18 from '../../img/full3.jpg';
-import image19 from '../../img/full4.jpg';
-import image20 from '../../img/full5.jpg';
-import image21 from '../../img/full6.jpg';
-import image22 from '../../img/full7.jpg';
-import image23 from '../../img/full8.jpg';
-import image24 from '../../img/full9.jpg';
+import logo from '../../assets/svgs/main-logo-atypica-white.svg';
+import image1 from '../../img/full1.jpg';
+import image2 from '../../img/full2.jpg';
+import image3 from '../../img/full3.jpg';
+import image4 from '../../img/full4.jpg';
+import image5 from '../../img/full5.jpg';
+import image6 from '../../img/full6.jpg';
+import image7 from '../../img/full7.jpg';
+import image8 from '../../img/full8.jpg';
+import image9 from '../../img/full9.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const images = [
+    image1, image2, image3, image4, image5, image6, image7, image8, image9
+];
 
 const preloadImages = (selector = 'img') => {
     return new Promise((resolve) => {
@@ -36,121 +25,73 @@ const preloadImages = (selector = 'img') => {
     });
 };
 
+const duplicateImagesToFillContainer = (images, containerHeight, imageHeight) => {
+    const numImagesPerColumn = Math.ceil(containerHeight / imageHeight);
+    return Array.from({ length: numImagesPerColumn }, () => images).flat();
+};
+
 const Work = () => {
+    const [duplicatedImages, setDuplicatedImages] = useState([]);
+
     useEffect(() => {
-        const lenis = new Lenis({
-            lerp: 0.1,
-            smoothWheel: true,
-        });
+        const containerHeight = window.innerHeight * 2; // 200vh
+        const imageHeight = 300; // Approximate height of each image in px, adjust as needed
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
+        setDuplicatedImages(duplicateImagesToFillContainer(images, containerHeight, imageHeight));
 
-        requestAnimationFrame(raf);
+        preloadImages().then(() => {
+            const scrollOffset = 500; // Définir un décalage fixe en pixels pour toutes les colonnes
 
-        lenis.on('scroll', ScrollTrigger.update);
-
-        const applyAnimation = (grid) => {
-            const gridWrap = grid.querySelector('.grid-wrap');
-            const gridItems = grid.querySelectorAll('.grid__item');
-            const gridItemsInner = [...gridItems].map((item) =>
-                item.querySelector('.grid__item-inner')
-            );
-
-            const timeline = gsap.timeline({
-                defaults: { ease: 'none' },
-                scrollTrigger: {
-                    trigger: gridWrap,
-                    start: 'top bottom+=5%',
-                    end: 'bottom top-=5%',
-                    scrub: true,
-                },
-            });
-
-            grid.style.setProperty('--grid-width', '105%');
-            grid.style.setProperty('--grid-columns', '8');
-            grid.style.setProperty('--perspective', '1500px');
-            grid.style.setProperty('--grid-inner-scale', '0.5');
-
-            timeline
-                .set(gridItems, {
-                    transformOrigin: '50% 0%',
-                    z: () => gsap.utils.random(-5000, -2000),
-                    rotationX: () => gsap.utils.random(-65, -25),
-                    filter: 'brightness(0%)',
-                })
-                .to(
-                    gridItems,
+            gsap.utils.toArray('.column').forEach((column, index) => {
+                const direction = index % 2 === 0 ? -scrollOffset : scrollOffset; // Inverser les directions
+                const yStart = 0
+                const yEnd = index % 2 === 0 ? `-=${scrollOffset}` : `+=${scrollOffset}`;
+                gsap.fromTo(column,
+                    { y: yStart },
                     {
-                        xPercent: () => gsap.utils.random(-150, 150),
-                        yPercent: () => gsap.utils.random(-300, 300),
-                        rotationX: 0,
-                        filter: 'brightness(200%)',
-                    },
-                    0
-                )
-                .to(
-                    gridWrap,
-                    {
-                        z: 6500,
-                    },
-                    0
-                )
-                .fromTo(
-                    gridItemsInner,
-                    {
-                        scale: 2,
-                    },
-                    {
-                        scale: 1,
-                    },
-                    0
+                        y: yEnd,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: column,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true,
+                            onUpdate: (self) => {
+                                gsap.set(column, { y: self.progress * direction - 50 });
+                            }
+                        }
+                    }
                 );
-        };
-
-        const scroll = () => {
-            const grids = document.querySelectorAll('.grid');
-            grids.forEach((grid) => {
-                applyAnimation(grid);
             });
-        };
-
-        preloadImages('.grid__item-inner').then(() => {
-            scroll();
-            document.body.classList.remove('loading');
         });
-
-        const handleResize = () => {
-            ScrollTrigger.refresh();
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-            lenis.destroy();
-            window.removeEventListener('resize', handleResize);
-        };
     }, []);
+
+    const getColumnImages = (columnIndex) => {
+        return duplicatedImages
+            .filter((_, index) => index % 5 === columnIndex)
+            .map((image, index) => (
+                <div key={index} className="image-container">
+                    <img src={image} alt={`work ${index + 1}`} />
+                    <div className="image-caption">
+                        <span className="image-title">Title {index + 1}</span>
+                        <span className="image-year">{2023 + (index % 2)}</span>
+                    </div>
+                </div>
+            ));
+    };
 
     return (
         <section className="work-section">
-            <div className="work-section__title">Work</div>
-            <div className="work-section__playground grid">
-                <div className="grid-wrap">
-                    {[image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18, image19, image20, image21, image22, image23, image24].map((src, index) => (
-                        <div className="grid__item" key={index}>
-                            <div
-                                className="grid__item-inner"
-                                style={{backgroundImage: `url(${src})`}}
-                            ></div>
-                        </div>
-                    ))}
+                <div className="work-section__title">
+                    <div className="work-section__title--text">Playground</div>
+                    <img className="work-section__title--logo" src={logo} alt="Logo atypica" />
                 </div>
-                <div className="work-section__title">Work</div>
-
+            <div className="work-section__playground">
+                <div className="column column--odd">{getColumnImages(0)}</div>
+                <div className="column column--pair">{getColumnImages(1)}</div>
+                <div className="column column--middle column--odd">{getColumnImages(2)}</div>
+                <div className="column column--pair">{getColumnImages(3)}</div>
+                <div className="column column--odd">{getColumnImages(4)}</div>
             </div>
         </section>
     );
