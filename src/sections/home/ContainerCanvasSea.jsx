@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
-import * as THREE from 'three';
-import GUI from 'lil-gui';
-import waterVertexShader from '../../shaders/water/vertex.glsl';
-import waterFragmentShader from '../../shaders/water/fragment.glsl';
+import React, { useRef, useEffect, useState } from 'react'
+import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
+import * as THREE from 'three'
+import GUI from 'lil-gui'
+import waterVertexShader from '../../shaders/water/vertex.glsl'
+import waterFragmentShader from '../../shaders/water/fragment.glsl'
 
 
 const Water = ( { hover }) => {
@@ -52,8 +52,8 @@ const Water = ( { hover }) => {
     }, [hover])
 
     useFrame(({ clock }) => {
-        uniforms.current.uTime.value = clock.getElapsedTime();
-        const easingFactor = 0.35;
+        uniforms.current.uTime.value = clock.getElapsedTime()
+        const easingFactor = 0.35
         uniforms.current.uSmallIterations.value += (targetIterations.current - uniforms.current.uSmallIterations.value)
         uniforms.current.uSmallWavesFrequency.value += (targetFrequency.current - uniforms.current.uSmallWavesFrequency.value) * easingFactor
     })
@@ -72,7 +72,7 @@ const Water = ( { hover }) => {
 }
 
 const ContainerCanvasSea = () => {
-    const [hover, setHover] = useState(false);
+    const [hover, setHover] = useState(false)
 
     return (
         <section className="container-canvas-sea">

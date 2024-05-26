@@ -1,6 +1,6 @@
-import React from 'react';
-import img from "../../img/full1.jpg";
-import arrow from "../../assets/svgs/arrow.svg";
+import React from 'react'
+import img from "../../img/full1.jpg"
+import arrow from "../../assets/svgs/arrow.svg"
 
 const Studio = () => {
     return (
@@ -11,7 +11,7 @@ const Studio = () => {
                 </h2>
                 <p className="studio-section__description">
                     Un studio qui casse les codes ! Chez nous, pas de sites web ennuyeux ni d'applications ordinaires -
-                    nous sommes spécialisés dans la création d’expériences numériques folles et des plus atypiques ;)
+                    nous sommes spécialisés dans la création d’expériences numériques folles et des plus atypiques )
                 </p>
             </div>
             <div className="flex studio-section__content--secondary">
@@ -24,7 +24,7 @@ const Studio = () => {
 
             </div>
         </section>
-    );
+    )
 }
 
-export default Studio;
+export default Studio

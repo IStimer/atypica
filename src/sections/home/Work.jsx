@@ -1,51 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import imagesLoaded from 'imagesloaded';
-import logo from '../../assets/svgs/main-logo-atypica-white.svg';
-import image1 from '../../img/full1.jpg';
-import image2 from '../../img/full2.jpg';
-import image3 from '../../img/full3.jpg';
-import image4 from '../../img/full4.jpg';
-import image5 from '../../img/full5.jpg';
-import image6 from '../../img/full6.jpg';
-import image7 from '../../img/full7.jpg';
-import image8 from '../../img/full8.jpg';
-import image9 from '../../img/full9.jpg';
+import React, { useEffect, useState } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import imagesLoaded from 'imagesloaded'
+import logo from '../../assets/svgs/main-logo-atypica-white.svg'
+import image1 from '../../img/full1.jpg'
+import image2 from '../../img/full2.jpg'
+import image3 from '../../img/full3.jpg'
+import image4 from '../../img/full4.jpg'
+import image5 from '../../img/full5.jpg'
+import image6 from '../../img/full6.jpg'
+import image7 from '../../img/full7.jpg'
+import image8 from '../../img/full8.jpg'
+import image9 from '../../img/full9.jpg'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const images = [
     image1, image2, image3, image4, image5, image6, image7, image8, image9
-];
+]
 
 const preloadImages = (selector = 'img') => {
     return new Promise((resolve) => {
         imagesLoaded(document.querySelectorAll(selector), { background: true }, resolve);
-    });
-};
+    })
+}
 
 const duplicateImagesToFillContainer = (images, containerHeight, imageHeight) => {
-    const numImagesPerColumn = Math.ceil(containerHeight / imageHeight);
-    return Array.from({ length: numImagesPerColumn }, () => images).flat();
-};
+    const numImagesPerColumn = Math.ceil(containerHeight / imageHeight)
+    return Array.from({ length: numImagesPerColumn }, () => images).flat()
+}
 
 const Work = () => {
-    const [duplicatedImages, setDuplicatedImages] = useState([]);
+    const [duplicatedImages, setDuplicatedImages] = useState([])
 
     useEffect(() => {
-        const containerHeight = window.innerHeight * 2; // 200vh
-        const imageHeight = 300; // Approximate height of each image in px, adjust as needed
+        const containerHeight = window.innerHeight * 2
+        const imageHeight = 300
 
         setDuplicatedImages(duplicateImagesToFillContainer(images, containerHeight, imageHeight));
 
         preloadImages().then(() => {
-            const scrollOffset = 500; // Définir un décalage fixe en pixels pour toutes les colonnes
+            const scrollOffset = 500
 
             gsap.utils.toArray('.column').forEach((column, index) => {
-                const direction = index % 2 === 0 ? -scrollOffset : scrollOffset; // Inverser les directions
+                const direction = index % 2 === 0 ? -scrollOffset : scrollOffset
                 const yStart = 0
-                const yEnd = index % 2 === 0 ? `-=${scrollOffset}` : `+=${scrollOffset}`;
+                const yEnd = index % 2 === 0 ? `-=${scrollOffset}` : `+=${scrollOffset}`
                 gsap.fromTo(column,
                     { y: yStart },
                     {

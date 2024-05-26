@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Presentation = () => {
     return (
@@ -8,7 +8,7 @@ const Presentation = () => {
                 <div className="work-section__title">Work</div>
             </div>
         </section>
-    );
+    )
 }
 
 export default Presentation

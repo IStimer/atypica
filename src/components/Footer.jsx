@@ -1,5 +1,5 @@
-import React from 'react';
-import sideLogo from '../assets/svgs/side-logo-atypica.svg';
+import React from 'react'
+import sideLogo from '../assets/svgs/side-logo-atypica.svg'
 
 export default function Footer({ children }) {
     return (
@@ -19,5 +19,5 @@ export default function Footer({ children }) {
             </div>
             {children}
         </footer>
-    );
+    )
 }

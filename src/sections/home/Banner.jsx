@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import mainLogo from '../../assets/svgs/main-logo-atypica.svg';
 
 export default function Banner() {

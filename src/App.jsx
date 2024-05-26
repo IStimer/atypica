@@ -5,25 +5,25 @@ import Preloader from "./components/Preloader.jsx";
 import RoutesWithTransitions from './components/RoutesWithTransitions.jsx';
 
 function App() {
-    // const [isLoading, setIsLoading] = useState(true);
-    //
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setIsLoading(false);
-    //     }, 2100);
-    //     return () => clearTimeout(timer);
-    // }, []);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2100);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <Router>
             <div className="App">
-                {/*<Preloader isLoading={isLoading} setIsLoading={setIsLoading} />*/}
+                {/*<Preloader isLoading={isLoading} setIsLoading={setIsLoading}/>*/}
                 {/*<div className={`content ${isLoading ? 'hidden' : 'visible'}`}>*/}
-                    <RoutesWithTransitions />
+                <RoutesWithTransitions />
                 {/*</div>*/}
             </div>
         </Router>
-    );
+    )
 }
 
 export default App;

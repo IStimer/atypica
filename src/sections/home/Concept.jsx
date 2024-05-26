@@ -1,6 +1,6 @@
-import React from 'react';
-import img from "../../img/full1.jpg";
-import arrow from "../../assets/svgs/arrow.svg";
+import React from 'react'
+import img from "../../img/full1.jpg"
+import arrow from "../../assets/svgs/arrow.svg"
 
 
 const Concept = () => {
@@ -19,7 +19,7 @@ const Concept = () => {
             </div>
             <div>©2024</div>
         </section>
-    );
+    )
 }
 
-export default Concept;
+export default Concept
