@@ -4,6 +4,7 @@ import { useTransition, animated } from '@react-spring/web'
 import Home from '../Home.jsx'
 import StudioPage from '../Studio.jsx'
 import PageTransition from '../components/PageTransition.jsx'
+import TestPage from '../Test.jsx'
 
 const RoutesWithTransitions = () => {
     const location = useLocation()
@@ -19,6 +20,8 @@ const RoutesWithTransitions = () => {
             <Routes location={item}>
                 <Route path="/" element={<PageTransition><Home /></PageTransition>} />
                 <Route path="/studio" element={<PageTransition><StudioPage /></PageTransition>} />
+                <Route path="/test" element={<PageTransition><TestPage /></PageTransition>} />
+
             </Routes>
         </animated.div>
     ))
