@@ -1,20 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ContactModal from './ContactModal';
 
 export default function Header({ children }) {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
     return (
         <header className="header">
             <nav className="header--nav">
                 <div>
                     <Link to="/">atypica</Link>
-
                 </div>
                 <div>
                     digital studio
                 </div>
                 <div className="header--nav__col flex">
                     <Link to="/studio">studio</Link>
-                    <a href="/contact">contact</a>
+                    <a href="#!" onClick={openModal}>contact</a>
                 </div>
                 <div className="header--nav__col flex">
                     <a href="https://twitter.com">twitter</a>
@@ -22,7 +32,8 @@ export default function Header({ children }) {
                 </div>
                 <div>bayonne, fr</div>
             </nav>
-                {children}
+            {children}
+            <ContactModal isOpen={modalIsOpen} onRequestClose={closeModal} />
         </header>
-    )
+    );
 }
