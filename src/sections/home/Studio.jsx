@@ -27,4 +27,4 @@ const Studio = () => {
     )
 }
 
-export default Studio
+export default Studio;
