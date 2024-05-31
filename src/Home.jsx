@@ -7,6 +7,7 @@ import ContainerCanvasSea from './sections/home/ContainerCanvasSea.jsx'
 import Concept from './sections/home/Concept.jsx'
 import Work from './sections/home/Work.jsx'
 import Studio from './sections/home/Studio.jsx'
+import ContactUs from './sections/home/ContactUs.jsx'
 import './styles/main.scss'
 
 function Home() {
@@ -18,8 +19,9 @@ function Home() {
                     </Header>
                     <ContainerCanvasSea />
                     <Concept />
-                    <Studio />
                     <Work />
+                    <Studio />
+                    <ContactUs />
                     <Footer />
                 </Wrapper>
         </>

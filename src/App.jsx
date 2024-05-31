@@ -17,10 +17,10 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {/*<Preloader isLoading={isLoading} setIsLoading={setIsLoading}/>*/}
-                {/*<div className={`content ${isLoading ? 'hidden' : 'visible'}`}>*/}
+                <Preloader isLoading={isLoading} setIsLoading={setIsLoading}/>
+                <div className={`content ${isLoading ? 'hidden' : 'visible'}`}>
                 <RoutesWithTransitions />
-                {/*</div>*/}
+                </div>
             </div>
         </Router>
     )

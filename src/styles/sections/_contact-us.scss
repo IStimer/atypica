@@ -1,0 +1,23 @@
+.contact-us {
+  padding: 5vh 0;
+  font-weight: 600;
+
+  &__content {
+    gap: 15%;
+  }
+
+  &__secondary {
+    border-left: solid 1px $color-dark-grey;
+    padding-left: 1vw;
+    padding-top: 20vw;
+  }
+
+  &__title {
+    font-size: 5vw;
+    margin-bottom: 2.5vw;
+
+    &--secondary {
+      font-size: 3vw;
+    }
+  }
+}

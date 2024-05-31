@@ -21,12 +21,6 @@ const images = [
     image1, image2, image3, image4, image5, image6, image7, image8, image9
 ];
 
-const preloadImages = (selector = 'img') => {
-    return new Promise((resolve) => {
-        imagesLoaded(document.querySelectorAll(selector), {background: true}, resolve);
-    });
-};
-
 const duplicateImagesToFillContainer = (images, containerHeight, imageHeight) => {
     const numImagesPerColumn = Math.ceil(containerHeight / imageHeight);
     return Array.from({length: numImagesPerColumn}, () => images).flat();
@@ -41,45 +35,43 @@ const Work = () => {
 
         setDuplicatedImages(duplicateImagesToFillContainer(images, containerHeight, imageHeight));
 
-        preloadImages().then(() => {
-            const scrollOffset = 500;
+        const scrollOffset = 3500;
+        const animateColumn = (column, direction) => {
+            const yStart = 0;
+            const yEnd = direction === 'up' ? `-=${scrollOffset}` : `+=${scrollOffset}`;
 
-            const animateColumn = (column, direction) => {
-                const yStart = 0;
-                const yEnd = direction === 'up' ? `-=${scrollOffset}` : `+=${scrollOffset}`;
-
-                gsap.fromTo(column,
-                    {y: yStart},
-                    {
-                        y: yEnd,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: column,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: true,
-                            onUpdate: (self) => {
-                                const adjustedDirection = direction === 'up' ? -scrollOffset : scrollOffset;
-                                gsap.set(column, {y: self.progress * adjustedDirection - 50});
-                            }
+            gsap.fromTo(column,
+                {y: yStart},
+                {
+                    y: yEnd,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: column,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true,
+                        onUpdate: (self) => {
+                            const adjustedDirection = direction === 'up' ? -scrollOffset : scrollOffset;
+                            gsap.set(column, {y: self.progress * adjustedDirection});
                         }
                     }
-                );
-            };
+                }
+            );
+        };
 
-            document.querySelectorAll('.column--odd').forEach((column) => {
-                animateColumn(column, 'up');
-            });
-
-            document.querySelectorAll('.column--pair').forEach((column) => {
-                animateColumn(column, 'down');
-            });
+        document.querySelectorAll('.column--odd').forEach((column) => {
+            animateColumn(column, 'up');
         });
+
+        document.querySelectorAll('.column--pair').forEach((column) => {
+            animateColumn(column, 'down');
+        });
+
     }, []);
 
     const getColumnImages = (columnIndex) => {
         return duplicatedImages
-            .filter((_, index) => index % 5 === columnIndex)
+            .filter((_, index) => index % 3 === columnIndex)
             .map((image, index) => (
                 <div key={index} className="image-container">
                     <img src={image} alt={`work ${index + 1}`}/>
@@ -94,16 +86,16 @@ const Work = () => {
     return (
         <section className="work-section">
             <div className="work-section__content flex">
-            <div className="main-side flex">
-            <h2 className="work-section__title">Playground
-                <img className="work-section__arrow" src={arrow} alt="arrow"/>
-            </h2>
-            </div>
-            <p className="work-section__description">
-                Nous osons être différents : expérimenter, innover, donner vie aux idées et éveiller des émotions dans
-                le cœur des personnes qui interagissent avec nous. Nous sommes fiers de nous démarquer,
-                dans une réalité contemporaine saturée de solutions standardisées. Nous vous invitons à nous rejoindre
-                pour créer quelque chose de vraiment unique. </p>
+                <div className="main-side flex">
+                    <h2 className="work-section__title">Playground
+                        <img className="work-section__arrow" src={arrow} alt="arrow"/>
+                    </h2>
+                </div>
+                <p className="work-section__description">
+                    Nous osons être différents : expérimenter, innover, donner vie aux idées et éveiller des émotions dans
+                    le cœur des personnes qui interagissent avec nous. Nous sommes fiers de nous démarquer,
+                    dans une réalité contemporaine saturée de solutions standardisées. Nous vous invitons à nous rejoindre
+                    pour créer quelque chose de vraiment unique. </p>
             </div>
             <div className="work-section__playground">
                 <div className="column column--odd">
