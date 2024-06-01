@@ -9,9 +9,9 @@ import PageTransition from '../components/PageTransition.jsx'
 const RoutesWithTransitions = () => {
     const location = useLocation()
     const transitions = useTransition(location, {
-        from: { opacity: 0, transform: 'translateY(20px)' },
+        from: { opacity: 0, transform: 'translateY(0px)' },
         enter: { opacity: 1, transform: 'translateY(0px)' },
-        leave: { opacity: 0, transform: 'translateY(-20px)' },
+        leave: { opacity: 0, transform: 'translateY(0px)' },
         config: { duration: 500 },
         keys: location.pathname
     })

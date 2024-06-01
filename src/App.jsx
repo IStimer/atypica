@@ -6,20 +6,14 @@ import RoutesWithTransitions from './components/RoutesWithTransitions.jsx';
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 2100);
-        return () => clearTimeout(timer);
-    }, []);
+    const [isContentVisible, setIsContentVisible] = useState(false);
 
     return (
         <Router>
             <div className="App">
-                <Preloader isLoading={isLoading} setIsLoading={setIsLoading}/>
-                <div className={`content ${isLoading ? 'hidden' : 'visible'}`}>
-                <RoutesWithTransitions />
+                <Preloader isLoading={isLoading} setIsLoading={setIsLoading} setIsContentVisible={setIsContentVisible} />
+                <div className={`content ${isContentVisible ? 'visible' : 'hidden'}`}>
+                    <RoutesWithTransitions />
                 </div>
             </div>
         </Router>
