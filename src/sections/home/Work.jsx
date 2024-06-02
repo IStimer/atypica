@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {gsap} from 'gsap';
-import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import React, { useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import imagesLoaded from 'imagesloaded';
-import logo from '../../assets/svgs/main-logo-atypica-white.svg';
 import image1 from '../../img/full1.jpg';
 import image2 from '../../img/full2.jpg';
 import image3 from '../../img/full3.jpg';
@@ -12,75 +11,105 @@ import image6 from '../../img/full6.jpg';
 import image7 from '../../img/full7.jpg';
 import image8 from '../../img/full8.jpg';
 import image9 from '../../img/full9.jpg';
-import img from "../../img/full1.jpg";
+import image10 from '../../img/full1.jpg';
+import image11 from '../../img/full2.jpg';
+import image12 from '../../img/full3.jpg';
+import image13 from '../../img/full4.jpg';
+import image14 from '../../img/full5.jpg';
+import image15 from '../../img/full6.jpg';
+import image16 from '../../img/full7.jpg';
+import image17 from '../../img/full8.jpg';
+import image18 from '../../img/full9.jpg';
+import image19 from '../../img/full1.jpg';
 import arrow from "../../assets/svgs/arrow.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const images = [
-    image1, image2, image3, image4, image5, image6, image7, image8, image9
+    image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18, image19
 ];
 
-const duplicateImagesToFillContainer = (images, containerHeight, imageHeight) => {
-    const numImagesPerColumn = Math.ceil(containerHeight / imageHeight);
-    return Array.from({length: numImagesPerColumn}, () => images).flat();
-};
-
 const Work = () => {
-    const [duplicatedImages, setDuplicatedImages] = useState([]);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
-        const containerHeight = window.innerHeight * 2;
-        const imageHeight = 300;
+        const imgsLoaded = imagesLoaded(document.querySelector('.work-section__playground'), { background: true });
 
-        setDuplicatedImages(duplicateImagesToFillContainer(images, containerHeight, imageHeight));
+        imgsLoaded.on('done', () => {
+            const scrollOffset = 0;
 
-        const scrollOffset = 3500;
-        const animateColumn = (column, direction) => {
-            const yStart = 0;
-            const yEnd = direction === 'up' ? `-=${scrollOffset}` : `+=${scrollOffset}`;
+            const animateColumn = (column, direction) => {
+                const yStart = direction === 'up' ? 0 : -scrollOffset;
+                const yEnd = direction === 'up' ? -scrollOffset : 0;
 
-            gsap.fromTo(column,
-                {y: yStart},
-                {
-                    y: yEnd,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: column,
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: true,
-                        onUpdate: (self) => {
-                            const adjustedDirection = direction === 'up' ? -scrollOffset : scrollOffset;
-                            gsap.set(column, {y: self.progress * adjustedDirection});
+                gsap.fromTo(column,
+                    { y: yStart },
+                    {
+                        y: yEnd,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: '.work-section',
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true
                         }
                     }
-                }
-            );
-        };
+                );
+            };
 
-        document.querySelectorAll('.column--odd').forEach((column) => {
-            animateColumn(column, 'up');
+            // Target only the middle column for animation
+            const columns = document.querySelectorAll('.image-container');
+            for (let i = 1; i < columns.length; i += 3) {
+                animateColumn(columns[i], 'up');
+            }
         });
-
-        document.querySelectorAll('.column--pair').forEach((column) => {
-            animateColumn(column, 'down');
-        });
-
     }, []);
 
-    const getColumnImages = (columnIndex) => {
-        return duplicatedImages
-            .filter((_, index) => index % 3 === columnIndex)
-            .map((image, index) => (
-                <div key={index} className="image-container">
-                    <img src={image} alt={`work ${index + 1}`}/>
-                    <div className="image-caption">
-                        <span className="image-title">Title {index + 1}</span>
-                        <span className="image-year">{2023 + (index % 2)}</span>
-                    </div>
+    useEffect(() => {
+        if (selectedImage) {
+            const { element } = selectedImage;
+            const bounds = element.getBoundingClientRect();
+            const x = window.innerWidth / 2 - (bounds.left + bounds.width / 2);
+            const y = window.innerHeight / 2 - (bounds.top + bounds.height / 2);
+
+            element.classList.add('selected');
+
+            gsap.timeline()
+                .set(element, { zIndex: 1000, position: 'relative' })
+                .to(element, {
+                    x: x,
+                    y: y,
+                    transformOrigin: '50% 50%',
+                    scale: 0.8,
+                    duration: 0.3,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                    }
+                });
+        }
+    }, [selectedImage]);
+
+    const handleImageClick = (e, image) => {
+        if (selectedImage) {
+            selectedImage.element.classList.remove('selected');
+        }
+        setSelectedImage({ element: e.currentTarget, image });
+    };
+
+    const renderImages = () => {
+        return images.map((image, index) => (
+            <div
+                key={index}
+                className={`image-container ${selectedImage && selectedImage.image === image ? 'no-hover' : ''}`}
+                onClick={(e) => handleImageClick(e, image)}
+            >
+                <img src={image} alt={`work ${index + 1}`} />
+                <div className="image-caption">
+                    <span className="image-title">Title {index + 1}</span>
+                    <span className="image-year">{2023 + (index % 2)}</span>
                 </div>
-            ));
+            </div>
+        ));
     };
 
     return (
@@ -88,7 +117,7 @@ const Work = () => {
             <div className="work-section__content flex">
                 <div className="main-side flex">
                     <h2 className="work-section__title">Playground
-                        <img className="work-section__arrow" src={arrow} alt="arrow"/>
+                        <img className="work-section__arrow" src={arrow} alt="arrow" />
                     </h2>
                 </div>
                 <p className="work-section__description">
@@ -98,23 +127,8 @@ const Work = () => {
                     pour créer quelque chose de vraiment unique. </p>
             </div>
             <div className="work-section__playground">
-                <div className="column column--odd">
-                    {getColumnImages(0)}
-                </div>
-                <div className="column column--pair">
-                    {getColumnImages(1)}
-                </div>
-                <div className="column column--odd">
-                    {getColumnImages(2)}
-                </div>
-                <div className="column column--pair">
-                    {getColumnImages(3)}
-                </div>
-                <div className="column column--odd">
-                    {getColumnImages(4)}
-                </div>
+                {renderImages()}
             </div>
-            <img className="work-section--logo" src={logo} alt="Logo atypica"/>
         </section>
     );
 };

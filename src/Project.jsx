@@ -2,16 +2,14 @@ import React from 'react'
 import Wrapper from './components/Wrapper'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Presentation from './sections/studio/Presentation.jsx'
 
-const StudioPage = () => {
+const ProjectPage = () => {
     return (
         <>
             <Wrapper>
                 <Header />
-                <Presentation />
                 <div>
-                    toto
+                    Project
                 </div>
                 <Footer />
             </Wrapper>
@@ -19,4 +17,4 @@ const StudioPage = () => {
     )
 }
 
-export default StudioPage
+export default ProjectPage

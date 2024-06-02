@@ -42,7 +42,7 @@ const Preloader = ({ setIsLoading, setIsContentVisible }) => {
             }
         });
 
-        tl.to(progressBar.current, { width: '100%', duration: 0.1, ease: 'power2.inOut' });
+        tl.to(progressBar.current, { width: '100%', duration: 0, ease: 'power2.inOut' });
 
         return () => {
             tl.kill();

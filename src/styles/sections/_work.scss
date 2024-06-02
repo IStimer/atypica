@@ -3,6 +3,7 @@
   overflow-x: hidden;
   padding: 5vh 0;
   font-weight: 600;
+  border-bottom: solid 1px $color-dark-grey;
 
   &__content {
     padding-bottom: 5vh;
@@ -21,32 +22,57 @@
 
   &__playground {
     width: 120%;
-    height: 200vh;
-    background: $color-dark-grey;
+    height: 170vh;
     overflow: hidden;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     position: relative;
     left: -10%;
-    top: -50%;
-    z-index: 1;
 
     img {
       width: 100%;
       display: block;
+      transition: transform 0.3s ease;
     }
 
-    .column {
+    .image-container {
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+
+      &.selected {
+        z-index: 1000;
+        position: fixed;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .no-hover.selected img {
+      transform: scale(2);
+    }
+
+    .image-caption {
       display: flex;
-      flex-direction: column;
-      gap: 40px;
-      position: relative;
-      top: -600px;
+      justify-content: space-between;
+      padding-top: 8px;
+      color: $color-dark-grey;
+      font-size: 0.833vw;
     }
 
-    .column--middle {
-      position: relative;
+    .image-title, .image-year {
+      width: fit-content;
+      height: fit-content;
+    }
+
+    .image-title {
+      text-align: left;
+    }
+
+    .image-year {
+      text-align: right;
     }
   }
 
@@ -56,27 +82,5 @@
     position: absolute;
     left: 2.5%;
     bottom: 3%;
-  }
-
-  .image-container {
-    position: relative;
-    width: 100%;
-  }
-
-  .image-caption {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 8px;
-    color: #ebebeb;
-    font-size: 0.833vw;
-    height: 100%;
-  }
-
-  .image-title {
-    text-align: left;
-  }
-
-  .image-year {
-    text-align: right;
   }
 }
