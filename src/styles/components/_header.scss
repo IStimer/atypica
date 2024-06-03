@@ -7,6 +7,10 @@
     display: flex;
     justify-content: space-between;
 
+    a.active {
+      text-decoration: underline;
+    }
+
     &__col {
       flex-direction: column;
     }

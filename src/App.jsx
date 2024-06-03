@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/main.scss';
-import PageTransition from "./components/PageTransition.jsx";
-import RoutesWithTransitions from './components/RoutesWithTransitions.jsx';
+import RoutesWithTransitions from "./components/RoutesWithTransitions.jsx";
+import { NavigationProvider } from './utils/NavigationContext';
 
-function App() {
-    return (
+const App = () => (
+    <NavigationProvider>
         <Router>
             <div className="App">
                 <RoutesWithTransitions />
             </div>
         </Router>
-    )
-}
+    </NavigationProvider>
+);
 
 export default App;
