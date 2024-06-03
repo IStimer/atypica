@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from '../Home.jsx';
 import StudioPage from '../Studio.jsx';
 import Project from '../Project.jsx';
-import Preloader from '../components/Preloader.jsx';
+import PageTransition from './PageTransition.jsx';
 
 const RoutesWithTransitions = () => {
     const location = useLocation();
@@ -23,7 +23,7 @@ const RoutesWithTransitions = () => {
 
     return (
         <>
-            {isLoading && <Preloader setIsLoading={setIsLoading} setIsContentVisible={setIsContentVisible} />}
+            {isLoading && <PageTransition setIsLoading={setIsLoading} setIsContentVisible={setIsContentVisible} />}
             {isContentVisible && (
                 <Routes location={location}>
                     <Route path="/" element={<Home />} />

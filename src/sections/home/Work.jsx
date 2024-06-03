@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect } from 'react';
 import imagesLoaded from 'imagesloaded';
+import { useNavigate } from 'react-router-dom';
 import image1 from '../../img/full1.jpg';
 import image2 from '../../img/full2.jpg';
 import image3 from '../../img/full3.jpg';
@@ -23,85 +22,27 @@ import image18 from '../../img/full9.jpg';
 import image19 from '../../img/full1.jpg';
 import arrow from "../../assets/svgs/arrow.svg";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const images = [
     image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18, image19
 ];
 
 const Work = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const imgsLoaded = imagesLoaded(document.querySelector('.work-section__playground'), { background: true });
-
-        imgsLoaded.on('done', () => {
-            const scrollOffset = 0;
-
-            const animateColumn = (column, direction) => {
-                const yStart = direction === 'up' ? 0 : -scrollOffset;
-                const yEnd = direction === 'up' ? -scrollOffset : 0;
-
-                gsap.fromTo(column,
-                    { y: yStart },
-                    {
-                        y: yEnd,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: '.work-section',
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: true
-                        }
-                    }
-                );
-            };
-
-            // Target only the middle column for animation
-            const columns = document.querySelectorAll('.image-container');
-            for (let i = 1; i < columns.length; i += 3) {
-                animateColumn(columns[i], 'up');
-            }
-        });
+        imagesLoaded(document.querySelector('.work-section__playground'), { background: true });
     }, []);
 
-    useEffect(() => {
-        if (selectedImage) {
-            const { element } = selectedImage;
-            const bounds = element.getBoundingClientRect();
-            const x = window.innerWidth / 2 - (bounds.left + bounds.width / 2);
-            const y = window.innerHeight / 2 - (bounds.top + bounds.height / 2);
-
-            element.classList.add('selected');
-
-            gsap.timeline()
-                .set(element, { zIndex: 1000, position: 'relative' })
-                .to(element, {
-                    x: x,
-                    y: y,
-                    transformOrigin: '50% 50%',
-                    scale: 0.8,
-                    duration: 0.3,
-                    ease: 'power2.inOut',
-                    onComplete: () => {
-                    }
-                });
-        }
-    }, [selectedImage]);
-
-    const handleImageClick = (e, image) => {
-        if (selectedImage) {
-            selectedImage.element.classList.remove('selected');
-        }
-        setSelectedImage({ element: e.currentTarget, image });
+    const handleImageClick = (image) => {
+        navigate('/project');
     };
 
     const renderImages = () => {
         return images.map((image, index) => (
             <div
                 key={index}
-                className={`image-container ${selectedImage && selectedImage.image === image ? 'no-hover' : ''}`}
-                onClick={(e) => handleImageClick(e, image)}
+                className="image-container"
+                onClick={() => handleImageClick(image)}
             >
                 <img src={image} alt={`work ${index + 1}`} />
                 <div className="image-caption">
