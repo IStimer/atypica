@@ -1,14 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplete }) => {
-    const [progress, setProgress] = useState(0);
     const progressBar = useRef(null);
     const preloader = useRef(null);
 
     useEffect(() => {
         const tl = gsap.timeline({
-            onUpdate: () => setProgress(tl.progress() * 100),
             onComplete: () => {
                 if (progressBar.current && preloader.current) {
                     gsap.to(progressBar.current, { height: '100%', duration: 1, ease: 'power2.inOut' });
@@ -27,6 +25,7 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
                                     ease: 'power2.inOut',
                                     onComplete: () => {
                                         if (preloader.current) {
+                                            onTransitionComplete(); // Change page here
                                             gsap.to(preloader.current, {
                                                 y: '-100%',
                                                 duration: 0.5,

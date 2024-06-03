@@ -9,24 +9,16 @@ import { useNavigation } from '../utils/NavigationContext';
 const RoutesWithTransitions = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { isTransitioning, nextPath, navigate: customNavigate } = useNavigation();
-    const [isLoading, setIsLoading] = useState(true);
-    const [isContentVisible, setIsContentVisible] = useState(false);
-    const skipPreloaderRef = useRef(false);
+    const { isTransitioning, nextPath, handleTransitionComplete } = useNavigation();
+    const [isLoading, setIsLoading] = useState(false);
+    const [isContentVisible, setIsContentVisible] = useState(true);
 
     useEffect(() => {
-        if (skipPreloaderRef.current) {
-            skipPreloaderRef.current = false;
-            return;
+        if (isTransitioning) {
+            setIsLoading(true);
+            setIsContentVisible(false);
         }
-
-        setIsLoading(true);
-        setIsContentVisible(false);
-    }, [location]);
-
-    const handleTransitionComplete = () => {
-        navigate(nextPath, { replace: true });
-    };
+    }, [isTransitioning]);
 
     return (
         <>
@@ -44,6 +36,6 @@ const RoutesWithTransitions = () => {
             )}
         </>
     );
-}
+};
 
 export default RoutesWithTransitions;
