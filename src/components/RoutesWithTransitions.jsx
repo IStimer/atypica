@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from '../Home.jsx';
 import StudioPage from '../Studio.jsx';
 import Project from '../Project.jsx';
@@ -8,24 +8,31 @@ import { useNavigation } from '../utils/NavigationContext';
 
 const RoutesWithTransitions = () => {
     const location = useLocation();
-    const navigate = useNavigate();
-    const { isTransitioning, nextPath, handleTransitionComplete } = useNavigation();
+    const { isTransitioning, handleTransitionComplete } = useNavigation();
     const [isLoading, setIsLoading] = useState(false);
-    const [isContentVisible, setIsContentVisible] = useState(true);
+    const [isContentVisible, setIsContentVisible] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
 
     useEffect(() => {
-        if (isTransitioning) {
+        if (initialLoad) {
             setIsLoading(true);
             setIsContentVisible(false);
+        } else if (isTransitioning) {
+            setIsLoading(true);
+            setIsContentVisible(true); // Keep content visible during transitions
         }
-    }, [isTransitioning]);
+    }, [isTransitioning, initialLoad]);
+
+    useEffect(() => {
+        setInitialLoad(false);
+    }, []);
 
     return (
         <>
             <Routes location={location}>
-                <Route path="/" element={<Home />} />
-                <Route path="/studio" element={<StudioPage />} />
-                <Route path="/project" element={<Project />} />
+                <Route path="/" element={isContentVisible ? <Home /> : null} />
+                <Route path="/studio" element={isContentVisible ? <StudioPage /> : null} />
+                <Route path="/project" element={isContentVisible ? <Project /> : null} />
             </Routes>
             {isLoading && (
                 <PageTransition
