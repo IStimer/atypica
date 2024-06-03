@@ -39,6 +39,7 @@ const RoutesWithTransitions = () => {
                     setIsLoading={setIsLoading}
                     setIsContentVisible={setIsContentVisible}
                     onTransitionComplete={handleTransitionComplete}
+                    initialLoad={initialLoad} // Pass initialLoad to PageTransition
                 />
             )}
         </>

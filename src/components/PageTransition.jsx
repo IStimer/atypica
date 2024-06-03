@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplete }) => {
+const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad }) => {
     const progressBar = useRef(null);
     const preloader = useRef(null);
 
@@ -25,14 +25,16 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
                                     ease: 'power2.inOut',
                                     onComplete: () => {
                                         if (preloader.current) {
-                                            onTransitionComplete(); // Change page here
+                                            onTransitionComplete();
+                                            if (!initialLoad) {
+                                                setIsContentVisible(true);
+                                            }
                                             gsap.to(preloader.current, {
                                                 y: '-100%',
                                                 duration: 0.5,
                                                 ease: 'power2.inOut',
                                                 onComplete: () => {
                                                     setIsLoading(false);
-                                                    setIsContentVisible(true);
                                                 }
                                             });
                                         }
@@ -52,7 +54,7 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
         return () => {
             tl.kill();
         };
-    }, [setIsLoading, setIsContentVisible, onTransitionComplete]);
+    }, [setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad]);
 
     return (
         <div className="preloader" ref={preloader}>
