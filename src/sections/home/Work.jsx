@@ -62,9 +62,9 @@ const Work = () => {
                     </h2>
                 </div>
                 <p className="work-section__description">
-                    Nous osons être différents : expérimenter, innover, donner vie aux idées et éveiller des émotions dans
-                    le cœur des personnes qui interagissent avec nous. Nous sommes fiers de nous démarquer,
-                    dans une réalité contemporaine saturée de solutions standardisées. Nous vous invitons à nous rejoindre
+                    Nous osons être différents : expérimenter, innover, donner vie aux idées et éveiller des émotions.
+                    Nous tentons de nous démarquer, dans une réalité contemporaine saturée de solutions standardisées.
+                    Nous vous invitons à nous rejoindre
                     pour créer quelque chose de vraiment unique. </p>
             </div>
             <div className="work-section__playground">

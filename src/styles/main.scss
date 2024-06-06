@@ -17,7 +17,8 @@
 @import 'abstracts/functions';
 
 // Sections
-@import 'sections/container-canvas-sea';
-@import 'sections/studio';
-@import 'sections/work';
-@import 'sections/contact-us';
+@import 'pages/home/sections/container-canvas-sea';
+@import 'pages/home/sections/studio';
+@import 'pages/home/sections/work';
+@import 'pages/home/sections/contact-us';
+@import 'pages/sutdio/sections/presentation';

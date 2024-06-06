@@ -1,0 +1,10 @@
+.presentation-section {
+    padding: 5vw 0;
+    font-weight: 600;
+    flex-wrap: wrap;
+    border-bottom: solid 1px $color-dark-grey;
+
+  &__title {
+    font-size: 10vw;
+  }
+}

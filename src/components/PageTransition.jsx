@@ -26,9 +26,9 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
                                     onComplete: () => {
                                         if (preloader.current) {
                                             onTransitionComplete();
-                                            if (!initialLoad) {
-                                                setIsContentVisible(true);
                                             }
+                                        if (!initialLoad) {
+                                            setIsContentVisible(true);
                                             gsap.to(preloader.current, {
                                                 y: '-100%',
                                                 duration: 0.5,
@@ -48,7 +48,7 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
         });
 
         if (progressBar.current) {
-            tl.to(progressBar.current, { width: '100%', duration: 0, ease: 'power2.inOut' });
+            tl.to(progressBar.current, { width: '100%', duration: 0.3, ease: 'power2.inOut' });
         }
 
         return () => {
