@@ -7,4 +7,18 @@
   &__title {
     font-size: 10vw;
   }
+
+  &__content {
+    justify-content: space-between;
+    padding-top: 10vw;
+    width: 100%;
+    &--secondary {
+      padding-top: 5vw;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+  &__img {
+    width: 100%;
+  }
 }
