@@ -6,19 +6,48 @@
 
   &__title {
     font-size: 10vw;
+    &--secondary {
+        margin-bottom: 2.5vw;
+    }
   }
 
   &__content {
     justify-content: space-between;
-    padding-top: 10vw;
+    padding: 10vw 0 5vw 0;
     width: 100%;
     &--secondary {
       padding-top: 5vw;
-      width: 100%;
+    }
+    &--you, &--team {
+      gap: 15%;
       justify-content: space-between;
     }
+    &--manifest {
+      font-size: 3vw;
+      gap: 15%;
+      padding: 5vw 0;
+    }
   }
+
+  &__sub-title {
+    &--secondary {
+      font-size: 3vw;
+      gap: 1vw;
+      align-items: center;
+    }
+  }
+
   &__img {
     width: 100%;
+    padding: 5vw 0;
+  }
+
+  &__item-list {
+    flex-direction: column;
+    border-left: solid 1px $color-dark-grey;
+    color: $color-red-basque;
+    height: fit-content;
+    padding-left: 1vw;
+    font-size: 3vw;
   }
 }
