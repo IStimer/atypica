@@ -11,10 +11,13 @@
 @import 'components/page-transition';
 @import 'components/contact-modal';
 
-// Utils
+// Astract
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
 @import 'abstracts/functions';
+
+// Utils
+@import 'utils/lenis';
 
 // Sections
 @import 'pages/home/sections/container-canvas-sea';

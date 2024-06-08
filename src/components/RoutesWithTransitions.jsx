@@ -5,6 +5,7 @@ import StudioPage from '../Studio.jsx';
 import Project from '../Project.jsx';
 import PageTransition from './PageTransition.jsx';
 import { useNavigation } from '../utils/NavigationContext';
+import Lenis from '@studio-freight/lenis';
 
 const RoutesWithTransitions = () => {
     const location = useLocation();
@@ -27,6 +28,33 @@ const RoutesWithTransitions = () => {
         setInitialLoad(false);
     }, []);
 
+    useEffect(() => {
+        if (!isLoading && !initialLoad) {
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+                infinite: false,
+            });
+
+            const raf = (time) => {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            };
+
+            requestAnimationFrame(raf);
+
+            return () => {
+                lenis.destroy();
+            };
+        }
+    }, [isLoading, initialLoad, location]);
+
     return (
         <>
             <Routes location={location}>
@@ -39,7 +67,7 @@ const RoutesWithTransitions = () => {
                     setIsLoading={setIsLoading}
                     setIsContentVisible={setIsContentVisible}
                     onTransitionComplete={handleTransitionComplete}
-                    initialLoad={initialLoad} // Pass initialLoad to PageTransition
+                    initialLoad={initialLoad}
                 />
             )}
         </>

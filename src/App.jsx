@@ -4,14 +4,16 @@ import './styles/main.scss';
 import RoutesWithTransitions from "./components/RoutesWithTransitions.jsx";
 import { NavigationProvider } from './utils/NavigationContext';
 
-const App = () => (
-    <NavigationProvider>
-        <Router>
-            <div className="App">
-                <RoutesWithTransitions />
-            </div>
-        </Router>
-    </NavigationProvider>
-);
+const App = () => {
+    return (
+        <NavigationProvider>
+            <Router>
+                <div className="App">
+                    <RoutesWithTransitions />
+                </div>
+            </Router>
+        </NavigationProvider>
+    );
+};
 
 export default App;
