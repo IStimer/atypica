@@ -26,16 +26,16 @@ const Presentation = () => {
                 new SplitType(element, { types: 'lines' });
                 gsap.fromTo(
                     element.querySelectorAll('.line'),
-                    { opacity: 0, y: -5 },
+                    { opacity: 0, y: 5 },
                     {
                         opacity: 1,
                         y: 0,
                         stagger: {
                             each: 0.1, // delay between the start of each line's animation
-                            overlap: 0.4 // overlap between animations
+                            overlap: 0.1 // overlap between animations
                         },
-                        duration: 0.2,
-                        ease: 'power2.out'
+                        duration: 0.1,
+                        ease: 'power2.in'
                     }
                 );
             }
@@ -72,8 +72,8 @@ const Presentation = () => {
                 const chars = title.querySelectorAll('.char');
                 if (chars.length > 0) {
                     gsap.fromTo(chars,
-                        { opacity: 0, y: -50 },
-                        { opacity: 1, y: 0, stagger: 0.05, duration: 0.5, ease: "power2.out", delay: 0.2 }
+                        { opacity: 0, position: 'relative', bottom: -30 },
+                        { opacity: 1, bottom: 0, stagger: 0.05, duration: 0.5, ease: "power2.out", delay: 0.2 }
                     );
                 }
             }
@@ -135,7 +135,7 @@ const Presentation = () => {
                 </div>
             </div>
             <div ref={el => sectionsRef.current.push(el)} className="presentation-section__content--manifest flex">
-                <h2 ref={el => titleRefs.current[2] = el} className="presentation-section__sub-title--manifest">Manifeste</h2>
+                <h2 className="presentation-section__sub-title--manifest">Manifeste</h2>
                 <div>
                     <p ref={el => textRefs.current.push(el)} className="presentation-section__description presentation-section__description--manifest">
                         Nous croyons en la puissance de la créativité et de l'innovation pour changer le monde.
@@ -149,7 +149,7 @@ const Presentation = () => {
                 </div>
             </div>
             <div ref={el => sectionsRef.current.push(el)} className="presentation-section__content--team flex main-side">
-                <div ref={el => titleRefs.current[3] = el}>Notre équipe</div>
+                <div>Notre équipe</div>
                 <div className="main-side">
                     <p ref={el => textRefs.current.push(el)} className="presentation-section__description presentation-section__description--team">
                         Designer et développeur mettent leur expertise au service de votre projet, chaque membre de
