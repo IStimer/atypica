@@ -1,0 +1,20 @@
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.header--banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animated-letter {
+  transform: translateY(100%);
+  animation: fadeInUp 0.4s ease-in-out forwards;
+}

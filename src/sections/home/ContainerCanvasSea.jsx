@@ -8,23 +8,23 @@ import waterFragmentShader from '../../shaders/water/fragment.glsl'
 
 const Water = ( { hover }) => {
 
-    useEffect(() => {
-        const gui = new GUI()
-        gui.add(uniforms.current.uBigWavesElevation, 'value', 0, 1, 0.01).name('Big Wave Elevation')
-        gui.add(uniforms.current.uBigWavesFrequency.value, 'x', 0, 10, 0.1).name('Big Wave Frequency X')
-        gui.add(uniforms.current.uBigWavesFrequency.value, 'y', 0, 10, 0.1).name('Big Wave Frequency Y')
-        gui.add(uniforms.current.uBigWavesSpeed, 'value', 0, 2, 0.01).name('Big Wave Speed')
-        gui.add(uniforms.current.uSmallWavesElevation, 'value', 0, 1, 0.01).name('Small Wave Elevation')
-        gui.add(uniforms.current.uSmallWavesFrequency, 'value', 0, 5, 0.1).name('Small Wave Frequency')
-        gui.add(uniforms.current.uSmallWavesSpeed, 'value', 0, 1, 0.01).name('Small Wave Speed')
-        gui.add(uniforms.current.uSmallIterations, 'value', 1, 8).step(1).name('Small Iterations')
-        gui.addColor(uniforms.current.uDepthColor, 'value').name('Depth Color')
-        gui.addColor(uniforms.current.uSurfaceColor, 'value').name('Surface Color')
-        gui.add(uniforms.current.uColorOffset, 'value', 0, 1, 0.01).name('Color Offset')
-        gui.add(uniforms.current.uColorMultiplier, 'value', 0, 10, 0.1).name('Color Multiplier')
-
-        return () => gui.destroy()
-    }, [])
+    // useEffect(() => {
+    //     const gui = new GUI()
+    //     gui.add(uniforms.current.uBigWavesElevation, 'value', 0, 1, 0.01).name('Big Wave Elevation')
+    //     gui.add(uniforms.current.uBigWavesFrequency.value, 'x', 0, 10, 0.1).name('Big Wave Frequency X')
+    //     gui.add(uniforms.current.uBigWavesFrequency.value, 'y', 0, 10, 0.1).name('Big Wave Frequency Y')
+    //     gui.add(uniforms.current.uBigWavesSpeed, 'value', 0, 2, 0.01).name('Big Wave Speed')
+    //     gui.add(uniforms.current.uSmallWavesElevation, 'value', 0, 1, 0.01).name('Small Wave Elevation')
+    //     gui.add(uniforms.current.uSmallWavesFrequency, 'value', 0, 5, 0.1).name('Small Wave Frequency')
+    //     gui.add(uniforms.current.uSmallWavesSpeed, 'value', 0, 1, 0.01).name('Small Wave Speed')
+    //     gui.add(uniforms.current.uSmallIterations, 'value', 1, 8).step(1).name('Small Iterations')
+    //     gui.addColor(uniforms.current.uDepthColor, 'value').name('Depth Color')
+    //     gui.addColor(uniforms.current.uSurfaceColor, 'value').name('Surface Color')
+    //     gui.add(uniforms.current.uColorOffset, 'value', 0, 1, 0.01).name('Color Offset')
+    //     gui.add(uniforms.current.uColorMultiplier, 'value', 0, 10, 0.1).name('Color Multiplier')
+    //
+    //     return () => gui.destroy()
+    // }, [])
 
     const meshRef = useRef()
     const { size, camera } = useThree()
