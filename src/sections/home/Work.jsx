@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import imagesLoaded from 'imagesloaded';
-import { useNavigate } from 'react-router-dom';
+import { gsap } from 'gsap';
 import image1 from '../../img/1.jpg';
 import image2 from '../../img/full2.jpg';
 import image3 from '../../img/full3.jpg';
@@ -27,32 +27,6 @@ const images = [
 ];
 
 const Work = () => {
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        imagesLoaded(document.querySelector('.work-section__playground'), { background: true });
-    }, []);
-
-    const handleImageClick = (image) => {
-        navigate('/project');
-    };
-
-    const renderImages = () => {
-        return images.map((image, index) => (
-            <div
-                key={index}
-                className="image-container"
-                onClick={() => handleImageClick(image)}
-            >
-                <img src={image} alt={`work ${index + 1}`} />
-                <div className="image-caption">
-                    <span className="image-title">Title {index + 1}</span>
-                    <span className="image-year">{2023 + (index % 2)}</span>
-                </div>
-            </div>
-        ));
-    };
-
     return (
         <section className="work-section">
             <div className="work-section__content flex">
@@ -68,7 +42,98 @@ const Work = () => {
                     pour créer quelque chose de vraiment unique. </p>
             </div>
             <div className="work-section__playground">
-                {renderImages()}
+                <ul className="work-section__playground--container">
+                    <li className="work-section__playground--item flex">
+                        <a href="#!" className="work-section__playground--link">
+                            <div className="work-section__playground--row flex">
+                                <div className="work-section__playground--title-wrapper flex">
+                                    <span className="work-section__playground--title">Spotify remake</span>
+                                    <span className="work-section__playground--subtitle">/ ceci est une topline</span>
+                                </div>
+                                <span className="work-section__playground--number">1</span>
+                            </div>
+                            <div className="work-section__playground--image-wrapper">
+                                <img src={image2} alt="Spotify remake" className="work-section__playground--image" />
+                                <img src={image2} alt="Spotify remake" className="work-section__playground--image" />
+                                <img src={image2} alt="Spotify remake" className="work-section__playground--image" />
+                                <img src={image2} alt="Spotify remake" className="work-section__playground--image" />
+                                <img src={image2} alt="Spotify remake" className="work-section__playground--image" />
+                            </div>
+                        </a>
+                    </li>
+                    <li className="work-section__playground--item flex">
+                        <a href="#!" className="work-section__playground--link">
+                            <div className="work-section__playground--row flex">
+                                <div className="work-section__playground--title-wrapper flex">
+                                    <span className="work-section__playground--title">Shop for Fox</span>
+                                    <span className="work-section__playground--subtitle">/ ceci est une topline</span>
+                                </div>
+                                <span className="work-section__playground--number">2</span>
+                            </div>
+                            <div className="work-section__playground--image-wrapper">
+                                <img src={image3} alt="Shop for Fox" className="work-section__playground--image" />
+                                <img src={image3} alt="Shop for Fox" className="work-section__playground--image" />
+                                <img src={image3} alt="Shop for Fox" className="work-section__playground--image" />
+                                <img src={image3} alt="Shop for Fox" className="work-section__playground--image" />
+                                <img src={image3} alt="Shop for Fox" className="work-section__playground--image" />
+                            </div>
+                        </a>
+                    </li>
+                    <li className="work-section__playground--item flex">
+                        <a href="#!" className="work-section__playground--link">
+                            <div className="work-section__playground--row flex">
+                                <div className="work-section__playground--title-wrapper flex">
+                                    <span className="work-section__playground--title">Immobilier neuf</span>
+                                    <span className="work-section__playground--subtitle">/ ceci est une topline</span>
+                                </div>
+                                <span className="work-section__playground--number">3</span>
+                            </div>
+                            <div className="work-section__playground--image-wrapper">
+                                <img src={image4} alt="Immobilier neuf" className="work-section__playground--image" />
+                                <img src={image4} alt="Immobilier neuf" className="work-section__playground--image" />
+                                <img src={image4} alt="Immobilier neuf" className="work-section__playground--image" />
+                                <img src={image4} alt="Immobilier neuf" className="work-section__playground--image" />
+                                <img src={image4} alt="Immobilier neuf" className="work-section__playground--image" />
+                            </div>
+                        </a>
+                    </li>
+                    <li className="work-section__playground--item flex">
+                        <a href="#!" className="work-section__playground--link">
+                            <div className="work-section__playground--row flex">
+                                <div className="work-section__playground--title-wrapper flex">
+                                    <span className="work-section__playground--title">Portfolio perso</span>
+                                    <span className="work-section__playground--subtitle">/ ceci est une topline</span>
+                                </div>
+                                <span className="work-section__playground--number">4</span>
+                            </div>
+                            <div className="work-section__playground--image-wrapper">
+                                <img src={image5} alt="Portfolio perso" className="work-section__playground--image" />
+                                <img src={image5} alt="Portfolio perso" className="work-section__playground--image" />
+                                <img src={image5} alt="Portfolio perso" className="work-section__playground--image" />
+                                <img src={image5} alt="Portfolio perso" className="work-section__playground--image" />
+                                <img src={image5} alt="Portfolio perso" className="work-section__playground--image" />
+                            </div>
+                        </a>
+                    </li>
+                    <li className="work-section__playground--item flex">
+                        <a href="#!" className="work-section__playground--link">
+                            <div className="work-section__playground--row flex">
+                                <div className="work-section__playground--title-wrapper flex">
+                                    <span className="work-section__playground--title">Play Quizzos</span>
+                                    <span className="work-section__playground--subtitle">/ ceci est une topline</span>
+                                </div>
+                                <span className="work-section__playground--number">5</span>
+                            </div>
+                            <div className="work-section__playground--image-wrapper">
+                                <img src={image6} alt="Play Quizzos" className="work-section__playground--image" />
+                                <img src={image6} alt="Play Quizzos" className="work-section__playground--image" />
+                                <img src={image6} alt="Play Quizzos" className="work-section__playground--image" />
+                                <img src={image6} alt="Play Quizzos" className="work-section__playground--image" />
+                                <img src={image6} alt="Play Quizzos" className="work-section__playground--image" />
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </section>
     );
