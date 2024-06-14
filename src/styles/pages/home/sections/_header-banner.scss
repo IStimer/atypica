@@ -1,4 +1,3 @@
-
 @keyframes fadeInUp {
   0% {
     transform: translateY(100%);
@@ -12,6 +11,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  position: relative;
+  top: -1.833vw;
+  z-index: -1;
+}
+
+.header--banner-svg {
+  width: 100%;
+}
+
+.header--banner-svg svg {
+  width: 100%;
+  height: 100%;
 }
 
 .animated-letter {
