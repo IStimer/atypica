@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { gsap } from "gsap";
+import * as THREE from 'three';
+import { useNavigate } from 'react-router-dom';
+import { useNavigation } from '../../utils/NavigationContext';
 import image1 from '../../img/1.jpg';
 import image2 from '../../img/full2.jpg';
 import image3 from '../../img/full3.jpg';
@@ -25,12 +29,48 @@ const images = [
 ];
 
 const Work = () => {
+    const [overlayImage, setOverlayImage] = useState(null);
+    const overlayRef = useRef(null);
+    const overlayImageRef = useRef(null);
+    const navigate = useNavigate();
+    const { navigate: startTransition } = useNavigation();
+
+    const handleImageClick = (imageSrc, e) => {
+        setOverlayImage(imageSrc);
+
+        const imageRect = e.target.getBoundingClientRect();
+        const overlayImage = overlayImageRef.current;
+
+        overlayImage.src = imageSrc;
+        overlayImage.style.position = 'absolute';
+        overlayImage.style.top = `${imageRect.top}px`;
+        overlayImage.style.left = `${imageRect.left}px`;
+        overlayImage.style.width = `${imageRect.width}px`;
+        overlayImage.style.height = `${imageRect.height}px`;
+
+        gsap.to(overlayImage, {
+            top: '50%',
+            left: '50%',
+            width: '90%',
+            height: '90%',
+            x: '-50%',
+            y: '-50%',
+            ease: 'power3.inOut',
+            duration: 1,
+            onComplete: () => {
+                startTransition('/project', navigate);
+            }
+        });
+
+        overlayRef.current.style.display = 'block';
+    };
+
     return (
         <section className="work">
             <div className="work__content flex">
                 <div className="main-side flex">
                     <h2 className="work__title">Playground
-                        <img className="work__arrow" src={arrow} alt="arrow" />
+                        <img className="work__arrow" src={arrow} alt="arrow"/>
                     </h2>
                 </div>
                 <p className="work__description">
@@ -43,7 +83,7 @@ const Work = () => {
             <div className="work__playground">
                 <ul className="work__playground-container">
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link">
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image2, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Spotify remake</span>
@@ -54,17 +94,22 @@ const Work = () => {
                             <div className="work__playground-image-wrapper">
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image2} alt="Spotify remake"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image2} alt="Spotify remake"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image2} alt="Spotify remake"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image2} alt="Spotify remake"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image2} alt="Spotify remake"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image2} alt="Spotify remake"/></li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link">
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image3, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Shop for Fox</span>
@@ -75,17 +120,22 @@ const Work = () => {
                             <div className="work__playground-image-wrapper">
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image3} alt="Shop for Fox"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image3} alt="Shop for Fox"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image3} alt="Shop for Fox"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image3} alt="Shop for Fox"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image3} alt="Shop for Fox"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image3} alt="Shop for Fox"/></li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link">
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image4, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Immobilier neuf</span>
@@ -96,17 +146,27 @@ const Work = () => {
                             <div className="work__playground-image-wrapper">
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image4} alt="Immobilier neuf"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link">
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image5, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Portfolio perso</span>
@@ -117,17 +177,27 @@ const Work = () => {
                             <div className="work__playground-image-wrapper">
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image5} alt="Portfolio perso"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image5} alt="Portfolio perso"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image5} alt="Portfolio perso"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image5} alt="Portfolio perso"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image5} alt="Portfolio perso"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link">
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image6, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Play Quizzos</span>
@@ -138,16 +208,24 @@ const Work = () => {
                             <div className="work__playground-image-wrapper">
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item" src={image6} alt="Play Quizzos"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image6} alt="Play Quizzos"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image6} alt="Play Quizzos"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image6} alt="Play Quizzos"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image6} alt="Play Quizzos"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image6} alt="Play Quizzos"/></li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                 </ul>
+            </div>
+            <div className="image-overlay" ref={overlayRef} style={{display: 'none'}}>
+                <img className="image-overlay__img" ref={overlayImageRef} alt="Overlay"/>
             </div>
         </section>
     );
