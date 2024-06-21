@@ -1,32 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { gsap } from "gsap";
-import * as THREE from 'three';
 import { useNavigate } from 'react-router-dom';
 import { useNavigation } from '../../utils/NavigationContext';
-import image1 from '../../img/1.jpg';
 import image2 from '../../img/full2.jpg';
 import image3 from '../../img/full3.jpg';
 import image4 from '../../img/full4.jpg';
 import image5 from '../../img/full5.jpg';
 import image6 from '../../img/6.jpg';
-import image7 from '../../img/7.jpg';
-import image8 from '../../img/8.jpg';
-import image9 from '../../img/9.jpg';
-import image10 from '../../img/full1.jpg';
-import image11 from '../../img/full2.jpg';
-import image12 from '../../img/full3.jpg';
-import image13 from '../../img/full4.jpg';
-import image14 from '../../img/5.jpg';
-import image15 from '../../img/6.jpg';
-import image16 from '../../img/full7.jpg';
-import image17 from '../../img/full8.jpg';
-import image18 from '../../img/9.jpg';
-import image19 from '../../img/full1.jpg';
 import arrow from "../../assets/svgs/arrow.svg";
 
-const images = [
-    image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18, image19
-];
 
 const Work = () => {
     const [overlayImage, setOverlayImage] = useState(null);
@@ -35,7 +17,7 @@ const Work = () => {
     const navigate = useNavigate();
     const { navigate: startTransition } = useNavigation();
 
-    const handleImageClick = (imageSrc, e) => {
+    const handleImageClick = (id, imageSrc, e) => {
         setOverlayImage(imageSrc);
 
         const imageRect = e.target.getBoundingClientRect();
@@ -58,7 +40,7 @@ const Work = () => {
             ease: 'power3.inOut',
             duration: 1,
             onComplete: () => {
-                startTransition('/project', navigate);
+                startTransition(`/project/${id}`, navigate);
             }
         });
 
@@ -83,11 +65,11 @@ const Work = () => {
             <div className="work__playground">
                 <ul className="work__playground-container">
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image2, e)}>
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(1, image2, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Spotify remake</span>
-                                    <span className="work__playground-subtitle">/ ceci est une topline</span>
+                                    <span className="work__playground-subtitle">/ceci est une topline</span>
                                 </div>
                                 <span className="work__playground-number">1</span>
                             </div>
@@ -109,11 +91,11 @@ const Work = () => {
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image3, e)}>
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(2, image3, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Shop for Fox</span>
-                                    <span className="work__playground-subtitle">/ ceci est une topline</span>
+                                    <span className="work__playground-subtitle">/ceci est une topline</span>
                                 </div>
                                 <span className="work__playground-number">2</span>
                             </div>
@@ -135,11 +117,11 @@ const Work = () => {
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image4, e)}>
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(3, image4, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Immobilier neuf</span>
-                                    <span className="work__playground-subtitle">/ ceci est une topline</span>
+                                    <span className="work__playground-subtitle">/ceci est une topline</span>
                                 </div>
                                 <span className="work__playground-number">3</span>
                             </div>
@@ -147,30 +129,25 @@ const Work = () => {
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
+                                                                                src={image4} alt="Immobilier neuf"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
+                                                                                src={image4} alt="Immobilier neuf"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
+                                                                                src={image4} alt="Immobilier neuf"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
+                                                                                src={image4} alt="Immobilier neuf"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
+                                                                                src={image4} alt="Immobilier neuf"/></li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image5, e)}>
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(4, image5, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Portfolio perso</span>
-                                    <span className="work__playground-subtitle">/ ceci est une topline</span>
+                                    <span className="work__playground-subtitle">/ceci est une topline</span>
                                 </div>
                                 <span className="work__playground-number">4</span>
                             </div>
@@ -178,30 +155,25 @@ const Work = () => {
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
+                                                                                src={image5} alt="Portfolio perso"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
+                                                                                src={image5} alt="Portfolio perso"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
+                                                                                src={image5} alt="Portfolio perso"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
+                                                                                src={image5} alt="Portfolio perso"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
+                                                                                src={image5} alt="Portfolio perso"/></li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(image6, e)}>
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(5, image6, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Play Quizzos</span>
-                                    <span className="work__playground-subtitle">/ ceci est une topline</span>
+                                    <span className="work__playground-subtitle">/ceci est une topline</span>
                                 </div>
                                 <span className="work__playground-number">5</span>
                             </div>
