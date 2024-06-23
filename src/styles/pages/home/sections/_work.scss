@@ -88,10 +88,12 @@
     }
 
     &-subtitle {
-      font-size: 2vw;
+      font-size: 1.5vw;
       position: relative;
       margin-left: 3vw;
       font-weight: 400;
+      text-transform: uppercase;
+
     }
 
     &-number {

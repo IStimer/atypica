@@ -68,8 +68,8 @@ const Work = () => {
                         <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(1, image2, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Spotify remake</span>
-                                    <span className="work__playground-subtitle">/ceci est une topline</span>
+                                    <span className="work__playground-title">Harmony'Gallery</span>
+                                    <span className="work__playground-subtitle">/design animations et transitions</span>
                                 </div>
                                 <span className="work__playground-number">1</span>
                             </div>
@@ -91,11 +91,42 @@ const Work = () => {
                         </a>
                     </li>
                     <li className="work__playground-item flex">
+                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(3, image4, e)}>
+                            <div className="work__playground-row flex">
+                                <div className="work__playground-title-wrapper flex">
+                                    <span className="work__playground-title">Acheterduneuf</span>
+                                    <span className="work__playground-subtitle">/developpement complexe</span>
+                                </div>
+                                <span className="work__playground-number">3</span>
+                            </div>
+                            <div className="work__playground-image-wrapper">
+                                <div className="work__playground-arrow">→</div>
+                                <ul className="work__playground-image-wrapper-list flex">
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                    <li className="work__playground-item flex">
                         <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(2, image3, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Shop for Fox</span>
-                                    <span className="work__playground-subtitle">/ceci est une topline</span>
+                                    <span className="work__playground-title">Portail scene</span>
+                                    <span className="work__playground-subtitle">/logiciel et langages 3d</span>
                                 </div>
                                 <span className="work__playground-number">2</span>
                             </div>
@@ -117,37 +148,11 @@ const Work = () => {
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(3, image4, e)}>
-                            <div className="work__playground-row flex">
-                                <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Immobilier neuf</span>
-                                    <span className="work__playground-subtitle">/ceci est une topline</span>
-                                </div>
-                                <span className="work__playground-number">3</span>
-                            </div>
-                            <div className="work__playground-image-wrapper">
-                                <div className="work__playground-arrow">→</div>
-                                <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/></li>
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                    <li className="work__playground-item flex">
                         <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(4, image5, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Portfolio perso</span>
-                                    <span className="work__playground-subtitle">/ceci est une topline</span>
+                                    <span className="work__playground-title">Portfolio</span>
+                                    <span className="work__playground-subtitle">/design et developpement</span>
                                 </div>
                                 <span className="work__playground-number">4</span>
                             </div>
@@ -155,15 +160,20 @@ const Work = () => {
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/></li>
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/></li>
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/></li>
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/></li>
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/></li>
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
                                 </ul>
                             </div>
                         </a>
@@ -172,8 +182,8 @@ const Work = () => {
                         <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(5, image6, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Play Quizzos</span>
-                                    <span className="work__playground-subtitle">/ceci est une topline</span>
+                                    <span className="work__playground-title">quizzos</span>
+                                    <span className="work__playground-subtitle">/developpement mobile</span>
                                 </div>
                                 <span className="work__playground-number">5</span>
                             </div>
