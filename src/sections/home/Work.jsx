@@ -9,7 +9,6 @@ import image5 from '../../img/full5.jpg';
 import image6 from '../../img/6.jpg';
 import arrow from "../../assets/svgs/arrow.svg";
 
-
 const Work = () => {
     const [overlayImage, setOverlayImage] = useState(null);
     const overlayRef = useRef(null);
@@ -47,6 +46,60 @@ const Work = () => {
         overlayRef.current.style.display = 'block';
     };
 
+    const handleMouseEnter = (e) => {
+        const images = e.currentTarget.querySelectorAll('.work__playground-image-item');
+        const titleWrapper = e.currentTarget.querySelector('.work__playground-title-wrapper');
+        const arrow = e.currentTarget.querySelector('.work__playground-arrow');
+
+        gsap.killTweensOf([images, titleWrapper, arrow]);
+
+        gsap.timeline()
+            .to(titleWrapper, {
+                opacity: 0,
+                duration: 0.1,
+            })
+            .to(arrow, {
+                x: 0,
+                opacity: 1,
+                ease: 'power3.inOut',
+                duration: 0.3,
+            }, "+=0.1")
+            .to(images, {
+                y: '-100%',
+                opacity: 1,
+                stagger: 0.05,
+                ease: 'power3.inOut',
+                duration: 0.3,
+            }, "-=0.2");
+    };
+
+    const handleMouseLeave = (e) => {
+        const images = e.currentTarget.querySelectorAll('.work__playground-image-item');
+        const titleWrapper = e.currentTarget.querySelector('.work__playground-title-wrapper');
+        const arrow = e.currentTarget.querySelector('.work__playground-arrow');
+
+        gsap.killTweensOf([images, titleWrapper, arrow]);
+
+        gsap.timeline()
+            .to(images, {
+                y: '0%',
+                opacity: 0,
+                stagger: 0.05,
+                ease: 'power3.inOut',
+                duration: 0.3,
+            })
+            .to(arrow, {
+                x: '-100%',
+                opacity: 0,
+                ease: 'power3.inOut',
+                duration: 0.3,
+            }, "-=0.2")
+            .to(titleWrapper, {
+                opacity: 1,
+                ease: 'power3.inOut',
+                duration: 0.1,
+            }, "+=0.1");
+    };
     return (
         <section className="work">
             <div className="work__content flex">
@@ -65,7 +118,7 @@ const Work = () => {
             <div className="work__playground">
                 <ul className="work__playground-container">
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(1, image2, e)}>
+                        <a href="#!" className="work__playground-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e) => handleImageClick(1, image2, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Harmony'Gallery</span>
@@ -86,12 +139,14 @@ const Work = () => {
                                                                                 src={image2} alt="Spotify remake"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
                                                                                 src={image2} alt="Spotify remake"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image2} alt="Spotify remake"/></li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(3, image4, e)}>
+                        <a href="#!" className="work__playground-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e) => handleImageClick(3, image4, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Acheterduneuf</span>
@@ -117,12 +172,15 @@ const Work = () => {
                                     <li className="work__playground-image"><img className="work__playground-image-item"
                                                                                 src={image4} alt="Immobilier neuf"/>
                                     </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image4} alt="Immobilier neuf"/>
+                                    </li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(2, image3, e)}>
+                        <a href="#!" className="work__playground-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e) => handleImageClick(2, image3, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Portail scene</span>
@@ -143,12 +201,14 @@ const Work = () => {
                                                                                 src={image3} alt="Shop for Fox"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
                                                                                 src={image3} alt="Shop for Fox"/></li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image3} alt="Shop for Fox"/></li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(4, image5, e)}>
+                        <a href="#!" className="work__playground-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e) => handleImageClick(4, image5, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">Portfolio</span>
@@ -174,12 +234,15 @@ const Work = () => {
                                     <li className="work__playground-image"><img className="work__playground-image-item"
                                                                                 src={image5} alt="Portfolio perso"/>
                                     </li>
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image5} alt="Portfolio perso"/>
+                                    </li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(5, image6, e)}>
+                        <a href="#!" className="work__playground-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e) => handleImageClick(5, image6, e)}>
                             <div className="work__playground-row flex">
                                 <div className="work__playground-title-wrapper flex">
                                     <span className="work__playground-title">quizzos</span>
@@ -190,6 +253,8 @@ const Work = () => {
                             <div className="work__playground-image-wrapper">
                                 <div className="work__playground-arrow">→</div>
                                 <ul className="work__playground-image-wrapper-list flex">
+                                    <li className="work__playground-image"><img className="work__playground-image-item"
+                                                                                src={image6} alt="Play Quizzos"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
                                                                                 src={image6} alt="Play Quizzos"/></li>
                                     <li className="work__playground-image"><img className="work__playground-image-item"
