@@ -56,20 +56,20 @@ const Work = () => {
         gsap.timeline()
             .to(titleWrapper, {
                 opacity: 0,
-                duration: 0.1,
+                duration: 0.2, // Texte disparaît plus rapidement
             })
             .to(arrow, {
                 x: 0,
                 opacity: 1,
                 ease: 'power3.inOut',
-                duration: 0.3,
+                duration: 0.5, // Flèche apparaît plus lentement
             }, "+=0.1")
             .to(images, {
                 y: '-100%',
                 opacity: 1,
-                stagger: 0.05,
-                ease: 'power3.inOut',
-                duration: 0.3,
+                stagger: 0.1, // Images apparaissent plus lentement et séquentiellement
+                ease: 'power3.in',
+                duration: 0.5, // Durée augmentée pour une transition plus fluide
             }, "-=0.2");
     };
 
@@ -84,22 +84,23 @@ const Work = () => {
             .to(images, {
                 y: '0%',
                 opacity: 0,
-                stagger: 0.05,
+                stagger: 0.1, // Images disparaissent plus lentement et séquentiellement
                 ease: 'power3.inOut',
-                duration: 0.3,
+                duration: 0.5, // Durée augmentée pour une transition plus fluide
             })
             .to(arrow, {
                 x: '-100%',
                 opacity: 0,
                 ease: 'power3.inOut',
-                duration: 0.3,
+                duration: 0.5, // Flèche disparaît plus lentement
             }, "-=0.2")
             .to(titleWrapper, {
                 opacity: 1,
                 ease: 'power3.inOut',
-                duration: 0.1,
+                duration: 0.1, // Texte réapparaît plus rapidement
             }, "+=0.1");
     };
+
     return (
         <section className="work">
             <div className="work__content flex">
