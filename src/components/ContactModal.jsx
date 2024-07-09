@@ -126,15 +126,15 @@ export default function ContactModal({ isOpen, onRequestClose }) {
                                        onChange={handleChange} required /> €2k-€5k
                             </div>
                             <div className="modal__form__input--container">
-                                <input className="modal__form__input--container" type="radio" name="budget" value="€5k-€10k"
+                                <input className="modal__form__input--radio" type="radio" name="budget" value="€5k-€10k"
                                        onChange={handleChange} required /> €5k-€10k
                             </div>
                             <div className="modal__form__input--container">
-                                <input className="modal__form__input--container" type="radio" name="budget" value="€10k-€30k"
+                                <input className="modal__form__input--radio" type="radio" name="budget" value="€10k-€30k"
                                        onChange={handleChange} required /> €10k-€30k
                             </div>
                             <div className="modal__form__input--container">
-                                <input className="modal__form__input--container" type="radio" name="budget" value="€30k+"
+                                <input className="modal__form__input--radio" type="radio" name="budget" value="€30k+"
                                        onChange={handleChange} required /> €30k+
                             </div>
                         </div>
