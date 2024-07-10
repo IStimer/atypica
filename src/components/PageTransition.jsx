@@ -19,8 +19,7 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
                                 gsap.to(preloader.current, {
                                     width: '97.5vw',
                                     height: '100%',
-                                    left: '50%',
-                                    y: '50%',
+                                    left: '1.25vw',
                                     top: 0,
                                     duration: 0.7,
                                     ease: 'power2.inOut',

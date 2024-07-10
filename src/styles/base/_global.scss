@@ -6,6 +6,11 @@ body {
   background: #ebebeb;
 }
 
+input[type=checkbox], input[type=radio] {
+  accent-color: #d52b1e;
+  margin: 0;
+}
+
 a {
   display: inline-block;
   position: relative;
