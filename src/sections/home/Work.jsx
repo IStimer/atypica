@@ -33,8 +33,8 @@ const Work = () => {
         gsap.to(overlayImage, {
             top: '50%',
             left: '50%',
-            width: '72vw',
-            height: '40.5vw',
+            width: '72%',
+            height: '65%',
             x: '-50%',
             y: '-50%',
             ease: 'power3.inOut',
