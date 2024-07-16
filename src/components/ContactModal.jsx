@@ -80,7 +80,7 @@ export default function ContactModal({ isOpen, onRequestClose }) {
         const body = encodeURIComponent(
             `Service: ${service.join(', ')}\nBudget: ${budget}\nName: ${name}\nEmail: ${email}\n\nProject Details:\n${projectDetails}\n\nStart Date: ${startDate}\nDeadline: ${deadline}`
         );
-        window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:bonjour@atypica.digital?subject=${subject}&body=${body}`;
     };
 
     return (
@@ -100,43 +100,43 @@ export default function ContactModal({ isOpen, onRequestClose }) {
                     <div className="modal__form__group">
                         <label className="modal__form__label"><span className="modal__form__label--number">01</span>Votre besoin ?</label>
                         <div className="flex modal__form__label--multi">
-                            <div className="modal__form__input--container">
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--checkbox" type="checkbox" name="service" value="Design"
                                        onChange={handleChange} /> Design
-                            </div>
-                            <div className="modal__form__input--container">
+                            </label>
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--checkbox" type="checkbox" name="service"
                                        value="Development" onChange={handleChange} /> Development
-                            </div>
-                            <div className="modal__form__input--container">
+                            </label>
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--checkbox" type="checkbox" name="service"
                                        value="2D & 3D Art" onChange={handleChange} /> 2D & 3D Art
-                            </div>
+                            </label>
                         </div>
                     </div>
                     <div className="modal__form__group">
                         <label className="modal__form__label"><span className="modal__form__label--number">02</span> Budget alloué au projet</label>
                         <div className="flex modal__form__label--multi">
-                            <div className="modal__form__input--container">
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--radio" type="radio" name="budget" value="moins de €2k"
                                        onChange={handleChange} required /> moins de €2k
-                            </div>
-                            <div className="modal__form__input--container">
+                            </label>
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--radio" type="radio" name="budget" value="€2k-€5k"
                                        onChange={handleChange} required /> €2k-€5k
-                            </div>
-                            <div className="modal__form__input--container">
+                            </label>
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--radio" type="radio" name="budget" value="€5k-€10k"
                                        onChange={handleChange} required /> €5k-€10k
-                            </div>
-                            <div className="modal__form__input--container">
+                            </label>
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--radio" type="radio" name="budget" value="€10k-€30k"
                                        onChange={handleChange} required /> €10k-€30k
-                            </div>
-                            <div className="modal__form__input--container">
+                            </label>
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--radio" type="radio" name="budget" value="€30k+"
                                        onChange={handleChange} required /> €30k+
-                            </div>
+                            </label>
                         </div>
                     </div>
                     <div className="modal__form__group">
@@ -171,14 +171,14 @@ export default function ContactModal({ isOpen, onRequestClose }) {
                     <div className="modal__form__group">
                         <label className="modal__form__label"><span className="modal__form__label--number">07</span> Avez-vous une deadline?</label>
                         <div className="flex modal__form__label--multi">
-                            <div className="modal__form__input--container">
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--radio" type="radio" name="deadline" value="Oui"
                                        onChange={handleChange} required /> Oui
-                            </div>
-                            <div className="modal__form__input--container">
+                            </label>
+                            <label className="modal__form__input--container">
                                 <input className="modal__form__input--radio" type="radio" name="deadline"
                                        value="Non" onChange={handleChange} required /> Non
-                            </div>
+                            </label>
                         </div>
                     </div>
                     <button className="modal__form__button modal__form__button--submit" type="submit">Envoyer une demande </button>

@@ -9,7 +9,16 @@ body {
 input[type=checkbox], input[type=radio] {
   accent-color: #d52b1e;
   margin: 0;
+  width: 1.3vw;
+  height: 1.3vw;
 }
+
+input:focus-visible,
+textarea:focus-visible {
+  border-color: #d52b1e; /* Couleur de la bordure en état de focus-visible */
+  box-shadow: 0 0 0 3px rgba(205, 10, 10, 0.5); /* Ajouter un halo autour de l'élément */
+}
+
 
 a {
   display: inline-block;
