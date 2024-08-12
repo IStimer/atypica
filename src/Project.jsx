@@ -14,27 +14,42 @@ import {useNavigation} from './utils/NavigationContext';
 const projectData = {
     '1': {
         title: 'Harmony\'Gallery',
-        description: 'Projet à vocation expérimentale et démonstrative afin de donner aux plateformes de streaming musicale, une dimension artistique',
+        description: 'Ce projet est une exploration artistique ambitieuse visant à intégrer une dimension créative et visuelle dans les plateformes de streaming musical. Conçu comme un projet expérimental et démonstratif, Harmony\'Gallery utilise des technologies avancées telles que Three.js et GSAP pour créer une expérience immersive et interactive qui transcende les limites traditionnelles des plateformes musicales. Ce projet personnel a été développé avec passion sur une période de deux mois, offrant un espace où l\'art rencontre la technologie.',
+        spec: 'Three.js, GSAP',
+        time: '2 mois',
+        type: 'Projet personnel pour le plaisir',
         image: image2
     },
     '2': {
         title: 'Acheterduneuf',
-        description: 'Refonte d\'un site avec des technologies très ancienne, contraint de rester sur cette base pour développer des fonctionnalités et un design complèxe',
+        description: 'Ce projet consistait en la refonte complète d\'un site web ancien, utilisant des technologies obsolètes mais essentielles pour maintenir la base du site existante. Malgré ces contraintes, le défi a été relevé de moderniser l\'interface et d\'introduire de nouvelles fonctionnalités complexes, en s\'appuyant sur des technologies comme Vanilla JS, PHP, et Elasticsearch. Ce projet professionnel, développé sur une période de six mois, est maintenant en ligne et commercialisé, démontrant notre capacité à innover même avec des limitations techniques.',
+        spec: 'Vanilla JS, PHP, Elasticsearch',
+        time: '6 mois',
+        type: 'Projet professionnel commercialisé',
         image: image4
     },
     '3': {
         title: 'Portail scene',
-        description: 'Approfondissement de la conception et du développement 3D, modélisation sur logiciel avec intégration web',
+        description: 'Ce projet est une avancée dans la conception et le développement 3D, combinant modélisation sur Blender et intégration web avec des frameworks modernes tels que Three.js et React Three Fiber. Portail Scene a été réalisé dans le cadre d\'un projet d\'apprentissage intensif, bouclé en une semaine, où chaque détail a été soigneusement pensé pour créer un portail immersif qui repousse les limites du développement 3D sur le web.',
+        spec: 'Three.js, Blender, React three fiber',
+        time: '1 semaine',
+        type: 'Projet d\'apprentissage',
         image: image3
     },
     '4': {
         title: 'Portfolio',
-        description: 'Premier projet ayant officiellement vu le jour, entraînement et démonstrations projets personnel',
+        description: 'Le Portfolio est notre premier projet à avoir vu officiellement le jour. Bien que devenu obsolète avec le temps, il reste un précieux souvenir de notre parcours. Ce projet servait à l\'origine d\'entraînement et de démonstration de projets personnels, utilisant des technologies comme SCSS et GSAP pour animer et structurer l\'expérience utilisateur. Ce vestige du passé, développé sur un mois, reflète les premières étapes de notre aventure dans le développement web.',
+        spec: 'SCSS, GSAP',
+        time: '1 mois',
+        type: 'Premier projet',
         image: image5
     },
     '5': {
         title: 'Quizzos',
-        description: 'Projet mobile avec un design poussé et attractif, avec des inspirations rétros',
+        description: 'Quizzos est un projet mobile unique en son genre, avec un design sophistiqué et attrayant inspiré des esthétiques rétro. Développé avec Vanilla JS, Cordova, et SCSS, ce projet a donné vie à une application mobile captivante, conçue pour offrir une expérience utilisateur fluide et engageante. Quizzos a marqué notre première incursion dans le développement mobile, avec une réalisation qui s\'est étalée sur deux mois.',
+        spec: 'Vanilla JS, Cordova, SCSS',
+        time: '2 mois',
+        type: 'Première mobile app',
         image: image6
     }
 };
@@ -83,8 +98,8 @@ const Project = () => {
                                     <img className="projet-section__arrow" src={arrow} alt="arrow"/>
                                 </h2>
                                 <div className="project-section__description">
-                                    <p>toto</p>
-                                    <p>tete</p>
+                                    <p>{project.spec}</p>
+                                    <p>{project.time}</p>
                                     <p>tette</p>
                                 </div>
                             </div>
