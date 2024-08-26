@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { gsap } from "gsap";
 import { useNavigate } from 'react-router-dom';
 import { useNavigation } from '../../utils/NavigationContext';
@@ -6,210 +6,179 @@ import image2 from '../../img/full2.jpg';
 import image3 from '../../img/full3.jpg';
 import image4 from '../../img/full4.jpg';
 import image5 from '../../img/full5.jpg';
-import image6 from '../../img/6.jpg';
 import arrow from "../../assets/svgs/arrow.svg";
 
-
 const Work = () => {
-    const [overlayImage, setOverlayImage] = useState(null);
-    const overlayRef = useRef(null);
-    const overlayImageRef = useRef(null);
+    const hoverImageRef = useRef(null);
     const navigate = useNavigate();
     const { navigate: startTransition } = useNavigation();
+    const [isHovered, setIsHovered] = useState(false);
+    const [isImageClicked, setIsImageClicked] = useState(false);
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        window.addEventListener('scroll', updateImagePosition);
+        return () => {
+            window.removeEventListener('scroll', updateImagePosition);
+        };
+    }, []);
 
     const handleImageClick = (id, imageSrc, e) => {
-        setOverlayImage(imageSrc);
+        const hoverImage = hoverImageRef.current;
+        setIsImageClicked(true);
 
-        const imageRect = e.target.getBoundingClientRect();
-        const overlayImage = overlayImageRef.current;
-
-        overlayImage.src = imageSrc;
-        overlayImage.style.position = 'absolute';
-        overlayImage.style.top = `${imageRect.top}px`;
-        overlayImage.style.left = `${imageRect.left}px`;
-        overlayImage.style.width = `${imageRect.width}px`;
-        overlayImage.style.height = `${imageRect.height}px`;
-
-        gsap.to(overlayImage, {
+        gsap.to(hoverImage, {
             top: '50%',
             left: '50%',
-            width: '72%',
-            height: '65%',
-            x: '-50%',
-            y: '-50%',
+            width: '72vw',
+            height: '65vh',
+            xPercent: -50,
+            yPercent: -50,
             ease: 'power3.inOut',
             duration: 1,
             onComplete: () => {
                 startTransition(`/project/${id}`, navigate);
             }
         });
+    };
 
-        overlayRef.current.style.display = 'block';
+    const handleMouseEnter = (imageSrc, e) => {
+        const hoverImage = hoverImageRef.current;
+        hoverImage.src = imageSrc;
+        hoverImage.style.display = 'block';
+        setIsHovered(true);
+        updateImagePosition();
+    };
+
+    const handleMouseMove = () => {
+        if (isHovered) {
+            updateImagePosition();
+        }
+    };
+
+    const updateImagePosition = () => {
+        const hoverImage = hoverImageRef.current;
+        const section = sectionRef.current;
+        const { bottom: sectionBottom, right: sectionRight } = section.getBoundingClientRect();
+        const { width: imageWidth, height: imageHeight } = hoverImage.getBoundingClientRect();
+        const { innerHeight: viewportHeight, innerWidth: viewportWidth } = window;
+
+        const horizontalMargin = viewportWidth * 0.025;
+        const verticalMargin = viewportHeight * 0.05;
+
+        let left = viewportWidth - imageWidth - horizontalMargin;
+        let top = viewportHeight - imageHeight - verticalMargin;
+
+        if (sectionBottom <= viewportHeight && sectionBottom >= 0) {
+            top = Math.min(sectionBottom - imageHeight - verticalMargin, top);
+        }
+
+        Object.assign(hoverImage.style, { left: `${left}px`, top: `${top}px` });
+    };
+
+    const handleMouseLeave = () => {
+        const hoverImage = hoverImageRef.current;
+        if (!isImageClicked) {
+            setIsHovered(false);
+            hoverImage.style.display = 'none';
+        }
     };
 
     return (
-        <section className="work">
-            <div className="work__content flex">
-                <div className="main-side flex">
-                    <h2 className="work__title">Playground
-                        <img className="work__arrow" src={arrow} alt="arrow"/>
-                    </h2>
+        <>
+            <section className="work" ref={sectionRef} onMouseMove={handleMouseMove}>
+                <div className="work__content flex">
+                    <div className="main-side flex">
+                        <h2 className="work__title">Playground
+                            <img className="work__arrow" src={arrow} alt="arrow"/>
+                        </h2>
+                    </div>
+                    <p className="work__description">
+                        Nous osons être différents : expérimenter, innover, donner vie aux idées et éveiller des
+                        émotions.
+                        Nous tentons de nous démarquer, dans une réalité contemporaine saturée de solutions
+                        standardisées.
+                        Nous vous invitons à nous rejoindre
+                        pour créer quelque chose de vraiment unique.
+                    </p>
                 </div>
-                <p className="work__description">
-                    Nous osons être différents : expérimenter, innover, donner vie aux idées et éveiller des émotions.
-                    Nous tentons de nous démarquer, dans une réalité contemporaine saturée de solutions standardisées.
-                    Nous vous invitons à nous rejoindre
-                    pour créer quelque chose de vraiment unique.
-                </p>
-            </div>
-            <div className="work__playground">
-                <ul className="work__playground-container">
-                    <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(1, image2, e)}>
-                            <div className="work__playground-row flex">
-                                <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Harmony'Gallery</span>
-                                    <span className="work__playground-subtitle">/design animations et transitions</span>
+                <div className="work__playground">
+                    <ul className="work__playground-container">
+                        <li className="work__playground-item flex">
+                            <a href="#!"
+                               className="work__playground-link"
+                               onClick={(e) => handleImageClick(1, image2, e)}
+                               onMouseEnter={(e) => handleMouseEnter(image2, e)}
+                               onMouseLeave={handleMouseLeave}>
+                                <div className="work__playground-row flex">
+                                    <div className="work__playground-title-wrapper flex">
+                                        <div className="work__playground-arrow">→</div>
+                                        <span className="work__playground-title">Harmony'Gallery</span>
+                                    </div>
                                 </div>
-                                <span className="work__playground-number">1</span>
-                            </div>
-                            <div className="work__playground-image-wrapper">
-                                <div className="work__playground-arrow">→</div>
-                                <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image2} alt="Spotify remake"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image2} alt="Spotify remake"/></li>
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                    <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(3, image4, e)}>
-                            <div className="work__playground-row flex">
-                                <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Acheterduneuf</span>
-                                    <span className="work__playground-subtitle">/developpement complexe</span>
+                            </a>
+                        </li>
+                        <li className="work__playground-item flex">
+                            <a href="#!"
+                               className="work__playground-link"
+                               onClick={(e) => handleImageClick(3, image4, e)}
+                               onMouseEnter={(e) => handleMouseEnter(image4, e)}
+                               onMouseLeave={handleMouseLeave}>
+                                <div className="work__playground-row flex">
+                                    <div className="work__playground-title-wrapper flex">
+                                        <div className="work__playground-arrow">→</div>
+                                        <span className="work__playground-title">Acheterduneuf</span>
+                                    </div>
                                 </div>
-                                <span className="work__playground-number">3</span>
-                            </div>
-                            <div className="work__playground-image-wrapper">
-                                <div className="work__playground-arrow">→</div>
-                                <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image4} alt="Immobilier neuf"/>
-                                    </li>
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                    <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(2, image3, e)}>
-                            <div className="work__playground-row flex">
-                                <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Portail scene</span>
-                                    <span className="work__playground-subtitle">/logiciel et langages 3d</span>
+                            </a>
+                        </li>
+                        <li className="work__playground-item flex">
+                            <a href="#!"
+                               className="work__playground-link"
+                               onClick={(e) => handleImageClick(2, image3, e)}
+                               onMouseEnter={(e) => handleMouseEnter(image3, e)}
+                               onMouseLeave={handleMouseLeave}>
+                                <div className="work__playground-row flex">
+                                    <div className="work__playground-title-wrapper flex">
+                                        <div className="work__playground-arrow">→</div>
+                                        <span className="work__playground-title">Portail scene</span>
+                                    </div>
                                 </div>
-                                <span className="work__playground-number">2</span>
-                            </div>
-                            <div className="work__playground-image-wrapper">
-                                <div className="work__playground-arrow">→</div>
-                                <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image3} alt="Shop for Fox"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image3} alt="Shop for Fox"/></li>
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                    <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(4, image5, e)}>
-                            <div className="work__playground-row flex">
-                                <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">Portfolio</span>
-                                    <span className="work__playground-subtitle">/design et developpement</span>
+                            </a>
+                        </li>
+                        <li className="work__playground-item flex">
+                            <a href="#!"
+                               className="work__playground-link"
+                               onClick={(e) => handleImageClick(4, image5, e)}
+                               onMouseEnter={(e) => handleMouseEnter(image5, e)}
+                               onMouseLeave={handleMouseLeave}>
+                                <div className="work__playground-row flex">
+                                    <div className="work__playground-title-wrapper flex">
+                                        <div className="work__playground-arrow">→</div>
+                                        <span className="work__playground-title">Portfolio</span>
+                                    </div>
                                 </div>
-                                <span className="work__playground-number">4</span>
-                            </div>
-                            <div className="work__playground-image-wrapper">
-                                <div className="work__playground-arrow">→</div>
-                                <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image5} alt="Portfolio perso"/>
-                                    </li>
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                    <li className="work__playground-item flex">
-                        <a href="#!" className="work__playground-link" onClick={(e) => handleImageClick(5, image6, e)}>
-                            <div className="work__playground-row flex">
-                                <div className="work__playground-title-wrapper flex">
-                                    <span className="work__playground-title">quizzos</span>
-                                    <span className="work__playground-subtitle">/developpement mobile</span>
+                            </a>
+                        </li>
+                        <li className="work__playground-item flex">
+                            <a href="#!"
+                               className="work__playground-link"
+                               onClick={(e) => handleImageClick(5, image3, e)}
+                               onMouseEnter={(e) => handleMouseEnter(image3, e)}
+                               onMouseLeave={handleMouseLeave}>
+                                <div className="work__playground-row flex">
+                                    <div className="work__playground-title-wrapper flex">
+                                        <div className="work__playground-arrow">→</div>
+                                        <span className="work__playground-title">quizzos</span>
+                                    </div>
                                 </div>
-                                <span className="work__playground-number">5</span>
-                            </div>
-                            <div className="work__playground-image-wrapper">
-                                <div className="work__playground-arrow">→</div>
-                                <ul className="work__playground-image-wrapper-list flex">
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image6} alt="Play Quizzos"/></li>
-                                    <li className="work__playground-image"><img className="work__playground-image-item"
-                                                                                src={image6} alt="Play Quizzos"/></li>
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div className="image-overlay" ref={overlayRef} style={{display: 'none'}}>
-                <img className="image-overlay__img" ref={overlayImageRef} alt="Overlay"/>
-            </div>
-        </section>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <img className="image-hover-preview" ref={hoverImageRef} alt="Preview"/>
+            </section>
+        </>
     );
 };
 
