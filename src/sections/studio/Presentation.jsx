@@ -23,19 +23,26 @@ const Presentation = () => {
 
         const splitTextLines = (element) => {
             if (element) {
-                new SplitType(element, { types: 'lines' });
+                const splitInstance = new SplitType(element, { types: 'lines' });
+                splitInstance.lines.forEach(line => {
+                    const wrapper = document.createElement('div');
+                    wrapper.style.overflow = 'hidden';
+                    wrapper.style.display = 'inline-block';
+                    wrapper.style.width = '100%';
+                    line.parentNode.insertBefore(wrapper, line);
+                    wrapper.appendChild(line);
+                });
+
                 gsap.fromTo(
-                    element.querySelectorAll('.line'),
-                    { opacity: 0, y: 5 },
+                    splitInstance.lines,
+                    { opacity: 0, y: 50, rotate: 3 },
                     {
                         opacity: 1,
                         y: 0,
-                        stagger: {
-                            each: 0.1,
-                            overlap: 0.1
-                        },
-                        duration: 0.1,
-                        ease: 'power2.in'
+                        rotate: 0,
+                        stagger: 0.1,
+                        ease: 'power3.out',
+                        duration: 0.6,
                     }
                 );
             }
