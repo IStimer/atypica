@@ -10,6 +10,9 @@
     a.active {
       text-decoration: underline;
     }
+    a.home {
+      text-decoration: none;
+    }
 
     &__col {
       flex-direction: column;

@@ -30,7 +30,7 @@ export default function Header({ children }) {
                     <a
                         href="#!"
                         onClick={() => handleNavigation('/')}
-                        className={location.pathname === '/' ? 'active' : ''}
+                        className={`home ${location.pathname === '/' ? 'active' : ''}`}
                     >
                         atypica
                     </a>
