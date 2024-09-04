@@ -13,8 +13,11 @@
   align-items: center;
   width: 100%;
   position: relative;
-  top: -1.833vw;
+  top: 0;
   z-index: -1;
+  @media (min-width: 1200px) {
+    top: -1.833vw;
+  }
 }
 
 .header--banner-svg {

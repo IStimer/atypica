@@ -6,6 +6,10 @@
 
   &__title {
     font-size: 10vw;
+    justify-content: space-between;
+    @media (min-width: 1200px) {
+      justify-content: unset;
+    }
     &--secondary {
         margin-bottom: 2.5vw;
     }
@@ -13,27 +17,51 @@
 
   &__content {
     justify-content: space-between;
+    flex-direction: column;
     padding: 10vw 0 5vw 0;
     width: 100%;
+    gap: 30px;
+
+    @media (min-width: 1200px) {
+      flex-direction: row;
+    }
     &--secondary {
       padding-top: 5vw;
     }
     &--you, &--team {
-      gap: 15%;
+      gap: 30px;
       justify-content: space-between;
+      flex-direction: column;
+      @media (min-width: 1200px) {
+        flex-direction: row;
+        gap: 15%;
+
+      }
     }
     &--manifest {
-      font-size: 3vw;
-      gap: 15%;
+      font-size: 6vw;
+      gap: 30px;
+      flex-direction: column;
       padding: 5vw 0;
+        @media (min-width: 1200px) {
+          gap: 15%;
+          flex-direction: row;
+          font-size: 3vw;
+        }
     }
   }
 
   &__sub-title {
     &--secondary {
-      font-size: 3vw;
+      font-size: 7.5vw;
       gap: 1vw;
       align-items: center;
+      justify-content: space-between;
+      @media (min-width: 1200px) {
+          justify-content: start;
+          font-size: 3vw;
+
+      }
     }
   }
 
@@ -48,6 +76,9 @@
     color: $color-red-basque;
     height: fit-content;
     padding-left: 1vw;
-    font-size: 3vw;
+    font-size: 7.5vw;
+    @media (min-width: 1200px) {
+      font-size: 3vw;
+    }
   }
 }

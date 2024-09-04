@@ -1,4 +1,8 @@
 .container-canvas-sea {
   background: $color-dark-grey;
-  height: clamp( 400px, 60vh, 1200px);
+  height: 40vw;
+  margin: 3vw 0;
+  @media (min-width: 1200px) {
+    height: clamp( 400px, 60vh, 1200px);
+  }
 }

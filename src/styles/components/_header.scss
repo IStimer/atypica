@@ -4,8 +4,12 @@
   font-weight: 500;
 
   &--nav {
-    display: flex;
+    display: none;
     justify-content: space-between;
+    @media (min-width: 1200px) {
+      display: flex;
+
+    }
 
     a.active {
       text-decoration: underline;

@@ -1,7 +1,11 @@
 .footer {
   border-top: solid 1px $color-dark-grey;
   padding: 5vw 0;
-  gap: 15%;
+  gap: 20px;
+
+  @media (min-width: 1200px) {
+    gap: 15%;
+  }
   &__nav {
     gap: 5vw;
     display: flex;
@@ -14,7 +18,11 @@
   }
 
   &__item {
-    font-size: 1.5vw;
+    font-size: 4vw;
     font-weight: 600;
+
+    @media (min-width: 1200px) {
+      font-size: 1.5vw;
+    }
   }
 }

@@ -3,7 +3,12 @@
   font-weight: 600;
 
   &__content {
-    gap: 15%;
+    flex-direction: column;
+    gap: 30px;
+    @media (min-width: 1200px) {
+      gap: 15%;
+      flex-direction: row;
+    }
   }
 
   &__secondary {
