@@ -14,7 +14,7 @@ import {useNavigation} from './utils/NavigationContext';
 const projectData = {
     '1': {
         title: 'Harmony\'Gallery',
-        description: 'Ce projet est une exploration artistique ambitieuse visant à intégrer une dimension créative et visuelle dans les plateformes de streaming musical. Conçu comme un projet expérimental et démonstratif, Harmony\'Gallery utilise des technologies avancées telles que Three.js et GSAP pour créer une expérience immersive et interactive qui transcende les limites traditionnelles des plateformes musicales. Ce projet personnel a été développé avec passion sur une période de deux mois, offrant un espace où l\'art rencontre la technologie.',
+        description: 'Ce projet est une exploration artistique ambitieuse visant à intégrer une dimension créative et visuelle dans les plateformes de streaming musical. Conçu comme un projet expérimental et démonstratif, Harmony\'Gallery utilise des technologies avancées pour créer une expérience immersive et interactive qui transcende les limites traditionnelles des plateformes musicales. Ce projet personnel a été développé avec passion, offrant un espace où l\'art rencontre la technologie.',
         spec: 'Three.js, GSAP',
         time: '2 mois',
         type: 'Projet personnel pour le plaisir',
@@ -22,7 +22,7 @@ const projectData = {
     },
     '2': {
         title: 'Acheterduneuf',
-        description: 'Ce projet consistait en la refonte complète d\'un site web ancien, utilisant des technologies obsolètes mais essentielles pour maintenir la base du site existante. Malgré ces contraintes, le défi a été relevé de moderniser l\'interface et d\'introduire de nouvelles fonctionnalités complexes, en s\'appuyant sur des technologies comme Vanilla JS, PHP, et Elasticsearch. Ce projet professionnel, développé sur une période de six mois, est maintenant en ligne et commercialisé, démontrant notre capacité à innover même avec des limitations techniques.',
+        description: 'Ce projet consistait en la refonte complète d\'un site web ancien, utilisant des technologies obsolètes mais essentielles pour maintenir la base du site existante. Malgré ces contraintes, le défi a été relevé de moderniser l\'interface et d\'introduire de nouvelles fonctionnalités complexes. Il est maintenant en ligne et commercialisé, démontrant notre capacité à innover même avec des limitations techniques.',
         spec: 'Vanilla JS, PHP, Elasticsearch',
         time: '6 mois',
         type: 'Projet professionnel commercialisé',

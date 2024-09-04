@@ -31,8 +31,8 @@ const Presentation = () => {
                         opacity: 1,
                         y: 0,
                         stagger: {
-                            each: 0.1, // delay between the start of each line's animation
-                            overlap: 0.1 // overlap between animations
+                            each: 0.1,
+                            overlap: 0.1
                         },
                         duration: 0.1,
                         ease: 'power2.in'
