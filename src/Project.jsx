@@ -87,7 +87,7 @@ const Project = () => {
                         <div className="project-section__content--left secondary-side flex">
                             <div className="project-section__content--top flex">
                                 <h2 className="project-section__sub-title">Aperçu
-                                    <img className="projet-section__arrow" src={arrow} alt="arrow"/>
+                                    <img className="project-section__arrow" src={arrow} alt="arrow"/>
                                 </h2>
                                 <p className="project-section__description">
                                     {project.description}
@@ -95,7 +95,7 @@ const Project = () => {
                             </div>
                             <div className="project-section__content--bottom flex">
                                 <h2 className="project-section__sub-title">Détails
-                                    <img className="projet-section__arrow" src={arrow} alt="arrow"/>
+                                    <img className="project-section__arrow" src={arrow} alt="arrow"/>
                                 </h2>
                                 <div className="project-section__description">
                                     <p>{project.spec}</p>
