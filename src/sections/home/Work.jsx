@@ -15,6 +15,28 @@ const Work = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [isImageClicked, setIsImageClicked] = useState(false);
     const sectionRef = useRef(null);
+    const [isTouchOrSmallDevice, setIsTouchOrSmallDevice] = useState(false);
+
+    useEffect(() => {
+        const checkDeviceType = () => {
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isSmallScreen = window.innerWidth < 1200;
+            setIsTouchOrSmallDevice(isTouchDevice || isSmallScreen);
+        };
+
+        checkDeviceType();
+        window.addEventListener('resize', checkDeviceType);
+        return () => {
+            window.removeEventListener('resize', checkDeviceType);
+        };
+    }, []);
+
+    useEffect(() => {
+        const hoverImage = hoverImageRef.current;
+        if (hoverImage) {
+            hoverImage.style.display = 'none';
+        }
+    }, [isTouchOrSmallDevice]);
 
     useEffect(() => {
         window.addEventListener('scroll', updateImagePosition);
@@ -27,22 +49,27 @@ const Work = () => {
         const hoverImage = hoverImageRef.current;
         setIsImageClicked(true);
 
-        gsap.to(hoverImage, {
-            top: '50%',
-            left: '50%',
-            width: '72vw',
-            height: '65vh',
-            xPercent: -50,
-            yPercent: -50,
-            ease: 'power3.inOut',
-            duration: 1,
-            onComplete: () => {
-                startTransition(`/project/${id}`, navigate);
-            }
-        });
+        if (!isTouchOrSmallDevice) {
+            gsap.to(hoverImage, {
+                top: '50%',
+                left: '50%',
+                width: '72vw',
+                height: '65vh',
+                xPercent: -50,
+                yPercent: -50,
+                ease: 'power3.inOut',
+                duration: 1,
+                onComplete: () => {
+                    startTransition(`/project/${id}`, navigate);
+                }
+            });
+        } else {
+            startTransition(`/project/${id}`, navigate);
+        }
     };
 
     const handleMouseEnter = (imageSrc, e) => {
+        if (isTouchOrSmallDevice) return;
         const hoverImage = hoverImageRef.current;
         hoverImage.src = imageSrc;
         hoverImage.style.display = 'block';
@@ -51,12 +78,14 @@ const Work = () => {
     };
 
     const handleMouseMove = () => {
-        if (isHovered) {
+        if (isHovered && !isTouchOrSmallDevice) {
             updateImagePosition();
         }
     };
 
     const updateImagePosition = () => {
+        if (isTouchOrSmallDevice) return;
+
         const hoverImage = hoverImageRef.current;
         const section = sectionRef.current;
         const { bottom: sectionBottom, right: sectionRight } = section.getBoundingClientRect();
@@ -77,6 +106,7 @@ const Work = () => {
     };
 
     const handleMouseLeave = () => {
+        if (isTouchOrSmallDevice) return;
         const hoverImage = hoverImageRef.current;
         if (!isImageClicked) {
             setIsHovered(false);

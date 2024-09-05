@@ -9,8 +9,7 @@ export default function Footer({ children }) {
             </div>
             <div className="footer__nav">
                 <div className="flex footer__col">
-                    <a className="footer__item" href="/studio">studio</a>
-                    <a className="footer__item" href="/contact">contact</a>
+                    <a className="footer__item" href="mailto:bonjour@atypica.digital">bonjour@atypica.digital</a>
                 </div>
                 <div className="flex footer__col">
                     <a className="footer__item" href="https://twitter.com">twitter</a>

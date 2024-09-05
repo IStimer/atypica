@@ -2,12 +2,22 @@
   border-top: solid 1px $color-dark-grey;
   padding: 5vw 0;
   gap: 20px;
-
+  flex-direction: column;
   @media (min-width: 1200px) {
     gap: 15%;
   }
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+
+  &__logo {
+    width: 100%;
+    @media (min-width: 1024px) {
+      width: unset;
+    }
+  }
   &__nav {
-    gap: 5vw;
+    gap: 30px;
     display: flex;
   }
 
@@ -15,6 +25,7 @@
     flex-direction: column;
     border-left: solid 1px $color-dark-grey;
     padding-left: 1vw;
+    justify-content: center;
   }
 
   &__item {
