@@ -18,13 +18,20 @@
   }
 
   &__title {
-    font-size: 5vw;
+    font-size: 10vw;
     margin-bottom: 2.5vw;
     color: $color-green-basque;
+    @media (min-width: 1200px) {
+      font-size: 5vw;
 
+    }
     &--secondary {
-      font-size: 3vw;
+      font-size: 9vw;
       color: $color-red-basque;
+      @media (min-width: 1200px) {
+        font-size: 3vw;
+
+      }
     }
   }
 }

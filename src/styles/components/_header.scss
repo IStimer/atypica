@@ -31,14 +31,18 @@
     .mobile-menu-button {
       display: block;
       position: fixed;
+      color: white;
+      mix-blend-mode: difference;
       top: 0;
       right: 0;
       background: transparent;
       padding: 10px;
       border: none;
       text-align: left;
-      font-size: 1.2rem;
+      font-size: 7vw;
+      font-weight: 700;
       cursor: pointer;
+      z-index: 10;
     }
 
     .mobile-menu {
