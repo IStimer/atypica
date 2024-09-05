@@ -5,13 +5,13 @@ import Footer from './components/Footer'
 import Presentation from './sections/studio/Presentation.jsx'
 import './styles/main.scss'
 
-function StudioPage() {
+const StudioPage = () => {
     return (
         <>
             <Wrapper>
-                <Header />
-                <Presentation />
-                <Footer />
+                <Header/>
+                <Presentation/>
+                <Footer/>
             </Wrapper>
         </>
     )

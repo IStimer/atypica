@@ -10,7 +10,7 @@ import Studio from './sections/home/Studio.jsx'
 import ContactUs from './sections/home/ContactUs.jsx'
 import './styles/main.scss'
 
-function Home() {
+const Home = () => {
     return (
         <>
                 <Wrapper>

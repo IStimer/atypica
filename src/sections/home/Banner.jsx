@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-export default function Banner() {
+const Banner = () => {
     useEffect(() => {
         const letters = document.querySelectorAll('.animated-letter');
         letters.forEach((letter, index) => {
@@ -40,3 +40,5 @@ export default function Banner() {
         </div>
     )
 }
+
+export default Banner;
