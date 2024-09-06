@@ -40,7 +40,7 @@
         top: 0;
         right: 0;
         background: transparent;
-        padding: 10px;
+        padding: var(--spacer-xs);
         border: none;
         text-align: left;
         font-size: 7vw;
@@ -67,6 +67,7 @@
         a {
           display: flex;
           font-size: 20vw;
+          padding-left: var(--spacer-s);
           width: 100%;
           @media (min-width: 779px) {
             font-size: 10vw;
@@ -79,7 +80,7 @@
 
   .close-menu-button {
     display: block;
-    padding: 10px;
+    padding: var(--spacer-xs);
     position: absolute;
     background: none;
     border: none;

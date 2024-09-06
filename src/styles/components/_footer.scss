@@ -1,7 +1,7 @@
 .footer {
   border-top: solid 1px $color-dark-grey;
   padding: 5vw 0;
-  gap: 20px;
+  gap: var(--spacer-s);
   flex-direction: column;
   @media (min-width: 1200px) {
     gap: 15%;
@@ -17,7 +17,7 @@
     }
   }
   &__nav {
-    gap: 30px;
+    gap: var(--spacer-sm);
     display: flex;
   }
 

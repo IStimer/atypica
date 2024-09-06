@@ -10,6 +10,16 @@ body {
   }
 }
 
+:root {
+  --spacer-xs: 10px;
+  --spacer-s: 20px;
+  --spacer-sm: 30px;
+  --spacer-m: 50px;
+  --spacer-l: 100px;
+  --spacer-xl: 200px;
+}
+
+
 input[type=checkbox], input[type=radio] {
   accent-color: #d52b1e;
   margin: 0;
@@ -21,8 +31,8 @@ input[type=checkbox], input[type=radio] {
 
 input:focus-visible,
 textarea:focus-visible {
-  border-color: #d52b1e; /* Couleur de la bordure en état de focus-visible */
-  box-shadow: 0 0 0 3px rgba(205, 10, 10, 0.5); /* Ajouter un halo autour de l'élément */
+  border-color: #d52b1e;
+  box-shadow: 0 0 0 3px rgba(205, 10, 10, 0.5);
 }
 
 

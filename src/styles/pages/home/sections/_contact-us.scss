@@ -4,7 +4,7 @@
 
   &__content {
     flex-direction: column;
-    gap: 30px;
+    gap: var(--spacer-sm);
     @media (min-width: 1200px) {
       gap: 15%;
       flex-direction: row;
