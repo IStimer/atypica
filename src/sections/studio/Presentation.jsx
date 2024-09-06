@@ -1,37 +1,37 @@
-import React, { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import SplitType from 'split-type';
-import img from "../../img/full1.jpg";
-import image from '../../img/full6.jpg';
-import image2 from '../../img/full9.jpg';
-import image3 from '../../img/full7.jpg';
-import image4 from '../../img/10.jpg';
-import flag from '../../assets/svgs/flag-basque.svg';
+import React, { useLayoutEffect, useRef } from "react"
+import { gsap } from "gsap"
+import SplitType from 'split-type'
+import img from "../../img/full1.jpg"
+import image from '../../img/full6.jpg'
+import image2 from '../../img/full9.jpg'
+import image3 from '../../img/full7.jpg'
+import image4 from '../../img/10.jpg'
+import flag from '../../assets/svgs/flag-basque.svg'
 
 const Presentation = () => {
-    const titleRefs = useRef([]);
-    const textRefs = useRef([]);
-    const sectionsRef = useRef([]);
+    const titleRefs = useRef([])
+    const textRefs = useRef([])
+    const sectionsRef = useRef([])
 
     useLayoutEffect(() => {
         const splitText = (element) => {
             if (element) {
-                const chars = element.innerText.split('');
-                element.innerHTML = chars.map(char => `<span class="char">${char}</span>`).join('');
+                const chars = element.innerText.split('')
+                element.innerHTML = chars.map(char => `<span class="char">${char}</span>`).join('')
             }
-        };
+        }
 
         const splitTextLines = (element) => {
             if (element) {
-                const splitInstance = new SplitType(element, { types: 'lines' });
+                const splitInstance = new SplitType(element, { types: 'lines' })
                 splitInstance.lines.forEach(line => {
-                    const wrapper = document.createElement('div');
-                    wrapper.style.overflow = 'hidden';
-                    wrapper.style.display = 'inline-block';
-                    wrapper.style.width = '100%';
-                    line.parentNode.insertBefore(wrapper, line);
-                    wrapper.appendChild(line);
-                });
+                    const wrapper = document.createElement('div')
+                    wrapper.style.overflow = 'hidden'
+                    wrapper.style.display = 'inline-block'
+                    wrapper.style.width = '100%'
+                    line.parentNode.insertBefore(wrapper, line)
+                    wrapper.appendChild(line)
+                })
 
                 gsap.fromTo(
                     splitInstance.lines,
@@ -44,56 +44,56 @@ const Presentation = () => {
                         ease: 'power3.out',
                         duration: 0.6,
                     }
-                );
+                )
             }
-        };
+        }
 
-        titleRefs.current.forEach(title => title && splitText(title));
-        textRefs.current.forEach(text => text && splitTextLines(text));
+        titleRefs.current.forEach(title => title && splitText(title))
+        textRefs.current.forEach(text => text && splitTextLines(text))
 
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        gsap.to(entry.target, { opacity: 1, y: 0, duration: 0.5 });
-                        observer.unobserve(entry.target);
-                        const description = entry.target.querySelector('.presentation-section__description');
+                        gsap.to(entry.target, { opacity: 1, y: 0, duration: 0.5 })
+                        observer.unobserve(entry.target)
+                        const description = entry.target.querySelector('.presentation-section__description')
                         if (description) {
-                            splitTextLines(description);
+                            splitTextLines(description)
                         }
                     }
-                });
+                })
             },
             { threshold: 0.1 }
-        );
+        )
 
         sectionsRef.current.forEach(section => {
             if (section) {
-                gsap.set(section, { opacity: 0, y: 20 });
-                observer.observe(section);
+                gsap.set(section, { opacity: 0, y: 20 })
+                observer.observe(section)
             }
-        });
+        })
 
         titleRefs.current.forEach(title => {
             if (title) {
-                const chars = title.querySelectorAll('.char');
+                const chars = title.querySelectorAll('.char')
                 if (chars.length > 0) {
                     gsap.fromTo(chars,
                         { opacity: 0, position: 'relative', bottom: -30 },
                         { opacity: 1, bottom: 0, stagger: 0.05, duration: 0.5, ease: "power2.out", delay: 0.2 }
-                    );
+                    )
                 }
             }
-        });
+        })
 
         return () => {
             sectionsRef.current.forEach(section => {
                 if (section && section instanceof Element) {
-                    observer.unobserve(section);
+                    observer.unobserve(section)
                 }
-            });
-        };
-    }, []);
+            })
+        }
+    }, [])
 
     return (
         <section className="presentation-section">
@@ -175,4 +175,4 @@ const Presentation = () => {
     )
 }
 
-export default Presentation;
+export default Presentation

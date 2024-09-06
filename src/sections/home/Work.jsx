@@ -1,53 +1,53 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { gsap } from "gsap";
-import { useNavigate } from 'react-router-dom';
-import { useNavigation } from '../../utils/NavigationContext';
-import image2 from '../../img/full2.jpg';
-import image3 from '../../img/full3.jpg';
-import image4 from '../../img/full4.jpg';
-import image5 from '../../img/full5.jpg';
-import arrow from "../../assets/svgs/arrow.svg";
+import React, { useRef, useState, useEffect } from 'react'
+import { gsap } from "gsap"
+import { useNavigate } from 'react-router-dom'
+import { useNavigation } from '../../utils/NavigationContext'
+import image2 from '../../img/full2.jpg'
+import image3 from '../../img/full3.jpg'
+import image4 from '../../img/full4.jpg'
+import image5 from '../../img/full5.jpg'
+import arrow from "../../assets/svgs/arrow.svg"
 
 const Work = () => {
-    const hoverImageRef = useRef(null);
-    const navigate = useNavigate();
-    const { navigate: startTransition } = useNavigation();
-    const [isHovered, setIsHovered] = useState(false);
-    const [isImageClicked, setIsImageClicked] = useState(false);
-    const sectionRef = useRef(null);
-    const [isTouchOrSmallDevice, setIsTouchOrSmallDevice] = useState(false);
+    const hoverImageRef = useRef(null)
+    const navigate = useNavigate()
+    const { navigate: startTransition } = useNavigation()
+    const [isHovered, setIsHovered] = useState(false)
+    const [isImageClicked, setIsImageClicked] = useState(false)
+    const sectionRef = useRef(null)
+    const [isTouchOrSmallDevice, setIsTouchOrSmallDevice] = useState(false)
 
     useEffect(() => {
         const checkDeviceType = () => {
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            const isSmallScreen = window.innerWidth < 1200;
-            setIsTouchOrSmallDevice(isTouchDevice || isSmallScreen);
-        };
-
-        checkDeviceType();
-        window.addEventListener('resize', checkDeviceType);
-        return () => {
-            window.removeEventListener('resize', checkDeviceType);
-        };
-    }, []);
-
-    useEffect(() => {
-        const hoverImage = hoverImageRef.current;
-        if (hoverImage) {
-            hoverImage.style.display = 'none';
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+            const isSmallScreen = window.innerWidth < 1200
+            setIsTouchOrSmallDevice(isTouchDevice || isSmallScreen)
         }
-    }, [isTouchOrSmallDevice]);
+
+        checkDeviceType()
+        window.addEventListener('resize', checkDeviceType)
+        return () => {
+            window.removeEventListener('resize', checkDeviceType)
+        }
+    }, [])
 
     useEffect(() => {
-        window.addEventListener('scroll', updateImagePosition);
+        const hoverImage = hoverImageRef.current
+        if (hoverImage) {
+            hoverImage.style.display = 'none'
+        }
+    }, [isTouchOrSmallDevice])
+
+    useEffect(() => {
+        window.addEventListener('scroll', updateImagePosition)
         return () => {
-            window.removeEventListener('scroll', updateImagePosition);
-        };
-    }, []);
+            window.removeEventListener('scroll', updateImagePosition)
+        }
+    }, [])
 
     const handleImageClick = (id, imageSrc, e) => {
-        const hoverImage = hoverImageRef.current;
-        setIsImageClicked(true);
+        const hoverImage = hoverImageRef.current
+        setIsImageClicked(true)
 
         if (!isTouchOrSmallDevice) {
             gsap.to(hoverImage, {
@@ -60,59 +60,59 @@ const Work = () => {
                 ease: 'power3.inOut',
                 duration: 1,
                 onComplete: () => {
-                    startTransition(`/project/${id}`, navigate);
+                    startTransition(`/project/${id}`, navigate)
                 }
-            });
+            })
         } else {
-            startTransition(`/project/${id}`, navigate);
+            startTransition(`/project/${id}`, navigate)
         }
-    };
+    }
 
     const handleMouseEnter = (imageSrc, e) => {
-        if (isTouchOrSmallDevice) return;
-        const hoverImage = hoverImageRef.current;
-        hoverImage.src = imageSrc;
-        hoverImage.style.display = 'block';
-        setIsHovered(true);
-        updateImagePosition();
-    };
+        if (isTouchOrSmallDevice) return
+        const hoverImage = hoverImageRef.current
+        hoverImage.src = imageSrc
+        hoverImage.style.display = 'block'
+        setIsHovered(true)
+        updateImagePosition()
+    }
 
     const handleMouseMove = () => {
         if (isHovered && !isTouchOrSmallDevice) {
-            updateImagePosition();
+            updateImagePosition()
         }
-    };
+    }
 
     const updateImagePosition = () => {
-        if (isTouchOrSmallDevice) return;
+        if (isTouchOrSmallDevice) return
 
-        const hoverImage = hoverImageRef.current;
-        const section = sectionRef.current;
-        const { bottom: sectionBottom, right: sectionRight } = section.getBoundingClientRect();
-        const { width: imageWidth, height: imageHeight } = hoverImage.getBoundingClientRect();
-        const { innerHeight: viewportHeight, innerWidth: viewportWidth } = window;
+        const hoverImage = hoverImageRef.current
+        const section = sectionRef.current
+        const { bottom: sectionBottom, right: sectionRight } = section.getBoundingClientRect()
+        const { width: imageWidth, height: imageHeight } = hoverImage.getBoundingClientRect()
+        const { innerHeight: viewportHeight, innerWidth: viewportWidth } = window
 
-        const horizontalMargin = viewportWidth * 0.025;
-        const verticalMargin = viewportHeight * 0.05;
+        const horizontalMargin = viewportWidth * 0.025
+        const verticalMargin = viewportHeight * 0.05
 
-        let left = viewportWidth - imageWidth - horizontalMargin;
-        let top = viewportHeight - imageHeight - verticalMargin;
+        let left = viewportWidth - imageWidth - horizontalMargin
+        let top = viewportHeight - imageHeight - verticalMargin
 
         if (sectionBottom <= viewportHeight && sectionBottom >= 0) {
-            top = Math.min(sectionBottom - imageHeight - verticalMargin, top);
+            top = Math.min(sectionBottom - imageHeight - verticalMargin, top)
         }
 
-        Object.assign(hoverImage.style, { left: `${left}px`, top: `${top}px` });
-    };
+        Object.assign(hoverImage.style, { left: `${left}px`, top: `${top}px` })
+    }
 
     const handleMouseLeave = () => {
-        if (isTouchOrSmallDevice) return;
-        const hoverImage = hoverImageRef.current;
+        if (isTouchOrSmallDevice) return
+        const hoverImage = hoverImageRef.current
         if (!isImageClicked) {
-            setIsHovered(false);
-            hoverImage.style.display = 'none';
+            setIsHovered(false)
+            hoverImage.style.display = 'none'
         }
-    };
+    }
 
     return (
         <>
@@ -209,7 +209,7 @@ const Work = () => {
                 <img className="image-hover-preview" ref={hoverImageRef} alt="Preview"/>
             </section>
         </>
-    );
-};
+    )
+}
 
-export default Work;
+export default Work

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
-import Lenis from '@studio-freight/lenis';
-import close from '../assets/svgs/cross.svg';
+import React, { useState, useEffect } from 'react'
+import Modal from 'react-modal'
+import Lenis from '@studio-freight/lenis'
+import close from '../assets/svgs/cross.svg'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
  const ContactModal = ({ isOpen, onRequestClose }) => {
     const [formData, setFormData] = useState({
@@ -14,22 +14,22 @@ Modal.setAppElement('#root');
         projectDetails: '',
         startDate: '',
         deadline: '',
-    });
+    })
 
     useEffect(() => {
         if (isOpen) {
-            document.body.classList.add('no-scroll');
+            document.body.classList.add('no-scroll')
         } else {
-            document.body.classList.remove('no-scroll');
+            document.body.classList.remove('no-scroll')
         }
 
         return () => {
-            document.body.classList.remove('no-scroll');
-        };
-    }, [isOpen]);
+            document.body.classList.remove('no-scroll')
+        }
+    }, [isOpen])
 
      useEffect(() => {
-         let lenis;
+         let lenis
          if (!isOpen) {
              if (window.innerWidth > 1200) {
                  lenis = new Lenis({
@@ -42,47 +42,47 @@ Modal.setAppElement('#root');
                      smoothTouch: false,
                      touchMultiplier: 2,
                      infinite: false,
-                 });
+                 })
 
                  const raf = (time) => {
-                     lenis.raf(time);
-                     requestAnimationFrame(raf);
-                 };
+                     lenis.raf(time)
+                     requestAnimationFrame(raf)
+                 }
 
-                 requestAnimationFrame(raf);
+                 requestAnimationFrame(raf)
              }
          }
 
          return () => {
-             if (lenis) lenis.destroy();
-         };
-     }, [isOpen]);
+             if (lenis) lenis.destroy()
+         }
+     }, [isOpen])
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type, checked } = e.target
         if (type === 'checkbox') {
             setFormData((prevData) => ({
                 ...prevData,
                 [name]: checked
                     ? [...prevData[name], value]
                     : prevData[name].filter((service) => service !== value)
-            }));
+            }))
         } else {
             setFormData({
                 ...formData,
                 [name]: value
-            });
+            })
         }
-    };
+    }
 
     const handleSendEmail = () => {
-        const { service, budget, name, email, projectDetails, startDate, deadline } = formData;
-        const subject = encodeURIComponent('Demande de contact');
+        const { service, budget, name, email, projectDetails, startDate, deadline } = formData
+        const subject = encodeURIComponent('Demande de contact')
         const body = encodeURIComponent(
             `Service: ${service.join(', ')}\nBudget: ${budget}\nName: ${name}\nEmail: ${email}\n\nProject Details:\n${projectDetails}\n\nStart Date: ${startDate}\nDeadline: ${deadline}`
-        );
-        window.location.href = `mailto:bonjour@atypica.digital?subject=${subject}&body=${body}`;
-    };
+        )
+        window.location.href = `mailto:bonjour@atypica.digital?subject=${subject}&body=${body}`
+    }
 
     return (
         <Modal
@@ -95,8 +95,8 @@ Modal.setAppElement('#root');
             <div className="modal__content">
                 <div className="modal__header">Travaillons ensemble!</div>
                 <form className="modal__form" onSubmit={(e) => {
-                    e.preventDefault();
-                    handleSendEmail();
+                    e.preventDefault()
+                    handleSendEmail()
                 }}>
                     <div className="modal__form__group">
                         <label className="modal__form__label"><span className="modal__form__label--number">01</span>Votre besoin ?</label>
@@ -190,7 +190,7 @@ Modal.setAppElement('#root');
                 </button>
             </div>
         </Modal>
-    );
+    )
 }
 
-export default ContactModal;
+export default ContactModal

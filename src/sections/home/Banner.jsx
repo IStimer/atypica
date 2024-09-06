@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 
 const Banner = () => {
     useEffect(() => {
-        const letters = document.querySelectorAll('.animated-letter');
+        const letters = document.querySelectorAll('.animated-letter')
         letters.forEach((letter, index) => {
-            letter.style.animationDelay = `${index * 0.02}s`;
-        });
-    }, []);
+            letter.style.animationDelay = `${index * 0.02}s`
+        })
+    }, [])
 
     return (
         <div className="header--banner">
@@ -41,4 +41,4 @@ const Banner = () => {
     )
 }
 
-export default Banner;
+export default Banner

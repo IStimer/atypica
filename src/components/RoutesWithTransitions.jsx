@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Home from '../Home.jsx';
-import StudioPage from '../Studio.jsx';
-import Project from '../Project.jsx';
-import PageTransition from './PageTransition.jsx';
-import { useNavigation } from '../utils/NavigationContext';
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import Home from '../Home.jsx'
+import StudioPage from '../Studio.jsx'
+import Project from '../Project.jsx'
+import PageTransition from './PageTransition.jsx'
+import { useNavigation } from '../utils/NavigationContext'
 
 const RoutesWithTransitions = () => {
-    const location = useLocation();
-    const { isTransitioning, handleTransitionComplete } = useNavigation();
-    const [isLoading, setIsLoading] = useState(false);
-    const [isContentVisible, setIsContentVisible] = useState(false);
-    const [initialLoad, setInitialLoad] = useState(true);
+    const location = useLocation()
+    const { isTransitioning, handleTransitionComplete } = useNavigation()
+    const [isLoading, setIsLoading] = useState(false)
+    const [isContentVisible, setIsContentVisible] = useState(false)
+    const [initialLoad, setInitialLoad] = useState(true)
 
     useEffect(() => {
         if (initialLoad) {
-            setIsLoading(true);
-            setIsContentVisible(false);
+            setIsLoading(true)
+            setIsContentVisible(false)
         } else if (isTransitioning) {
-            setIsLoading(true);
-            setIsContentVisible(true); // Keep content visible during transitions
+            setIsLoading(true)
+            setIsContentVisible(true) // Keep content visible during transitions
         }
-    }, [isTransitioning, initialLoad]);
+    }, [isTransitioning, initialLoad])
 
     useEffect(() => {
-        setInitialLoad(false);
-    }, []);
+        setInitialLoad(false)
+    }, [])
 
     return (
         <>
@@ -43,7 +43,7 @@ const RoutesWithTransitions = () => {
                 />
             )}
         </>
-    );
-};
+    )
+}
 
-export default RoutesWithTransitions;
+export default RoutesWithTransitions

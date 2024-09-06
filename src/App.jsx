@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import './styles/main.scss';
-import RoutesWithTransitions from "./components/RoutesWithTransitions.jsx";
-import { NavigationProvider } from './utils/NavigationContext';
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import './styles/main.scss'
+import RoutesWithTransitions from "./components/RoutesWithTransitions.jsx"
+import { NavigationProvider } from './utils/NavigationContext'
 
 const App = () => {
     return (
@@ -13,7 +13,7 @@ const App = () => {
                 </div>
             </Router>
         </NavigationProvider>
-    );
-};
+    )
+}
 
-export default App;
+export default App

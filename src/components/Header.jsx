@@ -1,36 +1,36 @@
-import React, { useState, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useNavigation } from '../utils/NavigationContext';
-import ContactModal from './ContactModal';
-import cross from '../assets/svgs/cross.svg';
+import React, { useState, useRef } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigation } from '../utils/NavigationContext'
+import ContactModal from './ContactModal'
+import cross from '../assets/svgs/cross.svg'
 
 const Header = ({ children }) => {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { navigate: customNavigate } = useNavigation();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const mobileMenuRef = useRef(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const { navigate: customNavigate } = useNavigation()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const mobileMenuRef = useRef(null)
 
     const openModal = () => {
-        setModalIsOpen(true);
-        setMobileMenuOpen(false);
-    };
+        setModalIsOpen(true)
+        setMobileMenuOpen(false)
+    }
 
     const closeModal = () => {
-        setModalIsOpen(false);
-    };
+        setModalIsOpen(false)
+    }
 
     const handleNavigation = (path) => {
         if (location.pathname !== path) {
-            customNavigate(path, navigate);
+            customNavigate(path, navigate)
         }
-        setMobileMenuOpen(false);
-    };
+        setMobileMenuOpen(false)
+    }
 
     const toggleMobileMenu = () => {
-        setMobileMenuOpen(!mobileMenuOpen);
-    };
+        setMobileMenuOpen(!mobileMenuOpen)
+    }
 
     const renderNavItems = () => (
         <>
@@ -66,7 +66,7 @@ const Header = ({ children }) => {
                 <div>bayonne, fr</div>
             )}
         </>
-    );
+    )
 
     return (
         <header className="header">
@@ -87,7 +87,7 @@ const Header = ({ children }) => {
             {children}
             <ContactModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
         </header>
-    );
+    )
 }
 
-export default Header;
+export default Header

@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
-import Wrapper from './components/Wrapper';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import image2 from './img/full2.jpg';
-import image3 from './img/full3.jpg';
-import image4 from './img/full4.jpg';
-import image5 from './img/full5.jpg';
-import image6 from './img/6.jpg';
-import arrow from "./assets/svgs/arrow.svg";
-import {useNavigation} from './utils/NavigationContext';
+import React, {useEffect, useState} from 'react'
+import {useParams, useNavigate} from 'react-router-dom'
+import Wrapper from './components/Wrapper'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import image2 from './img/full2.jpg'
+import image3 from './img/full3.jpg'
+import image4 from './img/full4.jpg'
+import image5 from './img/full5.jpg'
+import image6 from './img/6.jpg'
+import arrow from "./assets/svgs/arrow.svg"
+import {useNavigation} from './utils/NavigationContext'
 
 const projectData = {
     '1': {
@@ -52,28 +52,28 @@ const projectData = {
         type: 'Première mobile app',
         image: image6
     }
-};
+}
 
 const Project = () => {
-    const {id} = useParams();
-    const navigate = useNavigate();
-    const {navigate: startTransition} = useNavigation();
-    const project = projectData[id];
+    const {id} = useParams()
+    const navigate = useNavigate()
+    const {navigate: startTransition} = useNavigation()
+    const project = projectData[id]
 
     if (!project) {
-        return <div>Projet non trouvé</div>;
+        return <div>Projet non trouvé</div>
     }
 
-    const nextId = (parseInt(id) % Object.keys(projectData).length) + 1;
-    const nextProject = projectData[nextId];
+    const nextId = (parseInt(id) % Object.keys(projectData).length) + 1
+    const nextProject = projectData[nextId]
 
     const handleNextProject = () => {
-        startTransition(`/project/${nextId}`, navigate);
-    };
+        startTransition(`/project/${nextId}`, navigate)
+    }
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [id]);
+        window.scrollTo(0, 0)
+    }, [id])
 
     return (
         <>
@@ -135,7 +135,7 @@ const Project = () => {
                 <Footer/>
             </Wrapper>
         </>
-    );
-};
+    )
+}
 
-export default Project;
+export default Project

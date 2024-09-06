@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import React, { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 
 const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad }) => {
-    const progressBar = useRef(null);
-    const preloader = useRef(null);
+    const progressBar = useRef(null)
+    const preloader = useRef(null)
 
     useEffect(() => {
         const tl = gsap.timeline({
             onComplete: () => {
                 if (progressBar.current && preloader.current) {
-                    gsap.to(progressBar.current, { height: '100%', duration: 1, ease: 'power2.inOut' });
+                    gsap.to(progressBar.current, { height: '100%', duration: 1, ease: 'power2.inOut' })
                     gsap.to(preloader.current, {
                         backgroundColor: '$color-dark-grey',
                         duration: 0.7,
@@ -25,42 +25,42 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
                                     ease: 'power2.inOut',
                                     onComplete: () => {
                                         if (preloader.current) {
-                                            onTransitionComplete();
+                                            onTransitionComplete()
                                             }
                                         if (!initialLoad) {
-                                            setIsContentVisible(true);
+                                            setIsContentVisible(true)
                                             gsap.to(preloader.current, {
                                                 y: '-100%',
                                                 duration: 0.5,
                                                 ease: 'power2.inOut',
                                                 onComplete: () => {
-                                                    setIsLoading(false);
+                                                    setIsLoading(false)
                                                 }
-                                            });
+                                            })
                                         }
                                     }
-                                });
+                                })
                             }
                         }
-                    });
+                    })
                 }
             }
-        });
+        })
 
         if (progressBar.current) {
-            tl.to(progressBar.current, { width: '100%', duration: 0.3, ease: 'power2.inOut' });
+            tl.to(progressBar.current, { width: '100%', duration: 0.3, ease: 'power2.inOut' })
         }
 
         return () => {
-            tl.kill();
-        };
-    }, [setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad]);
+            tl.kill()
+        }
+    }, [setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad])
 
     return (
         <div className="preloader" ref={preloader}>
             <div className="progress-bar" ref={progressBar}></div>
         </div>
-    );
-};
+    )
+}
 
-export default PageTransition;
+export default PageTransition
