@@ -40,7 +40,7 @@ const Presentation = () => {
                         opacity: 1,
                         y: 0,
                         rotate: 0,
-                        stagger: 0.1,
+                        stagger: 0.05,
                         ease: 'power3.out',
                         duration: 0.6,
                     }

@@ -65,6 +65,11 @@ a {
     display: flex;
   }
 
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
   .wrapper {
     width: 97.5vw;
     position: absolute;

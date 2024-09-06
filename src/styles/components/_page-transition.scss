@@ -22,13 +22,17 @@
   z-index: 9999;
 }
 
-.progress-bar.full {
-  height: 100%;
+.welcome {
+  font-weight: 500;
+  font-size: 10vw;
+  mix-blend-mode: difference;
+  color: red;
+  position: absolute;
+  bottom: 0;
 }
 
-.hidden {
-  visibility: hidden;
-  opacity: 0;
+.progress-bar.full {
+  height: 100%;
 }
 
 .preloader.full-screen {

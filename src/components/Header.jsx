@@ -1,17 +1,16 @@
-import React, {useState, useRef} from 'react';
-import {Link, useNavigate, useLocation} from 'react-router-dom';
-import {useNavigation} from '../utils/NavigationContext';
+import React, { useState, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigation } from '../utils/NavigationContext';
 import ContactModal from './ContactModal';
-import useOutsideClick from '../hooks/useOutsideClick';
+import cross from '../assets/svgs/cross.svg';
 
-const Header = ({children}) => {
+const Header = ({ children }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const {navigate: customNavigate} = useNavigation();
+    const { navigate: customNavigate } = useNavigation();
     const navigate = useNavigate();
     const location = useLocation();
     const mobileMenuRef = useRef(null);
-    useOutsideClick(mobileMenuRef, () => setMobileMenuOpen(false));
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -78,12 +77,12 @@ const Header = ({children}) => {
                 <button onClick={toggleMobileMenu} className="mobile-menu-button">
                     {mobileMenuOpen ? 'Fermer' : 'Menu'}
                 </button>
-                {mobileMenuOpen && (
-                    <div className="mobile-menu" ref={mobileMenuRef}>
-                        {renderNavItems()}
-                        <button onClick={() => setMobileMenuOpen(false)} className="close-menu-button">Fermer</button>
-                    </div>
-                )}
+                <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`} ref={mobileMenuRef} style={{ transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(100%)' }}>
+                    {renderNavItems()}
+                    <button onClick={() => setMobileMenuOpen(false)} className="close-menu-button">
+                        <img src={cross} alt="croix de fermeture"/>
+                    </button>
+                </div>
             </div>
             {children}
             <ContactModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
@@ -91,4 +90,4 @@ const Header = ({children}) => {
     );
 }
 
-export default Header
+export default Header;
