@@ -10,6 +10,7 @@ import image5 from './img/full5.jpg'
 import image6 from './img/6.jpg'
 import arrow from "./assets/svgs/arrow.svg"
 import {useNavigation} from './utils/NavigationContext'
+import SketchComponent from "./components/Sketch.jsx";
 
 const projectData = {
     '1': {
@@ -106,22 +107,22 @@ const Project = () => {
                         </div>
                         <div className="project-section__content--right main-side">
                             <div className="project-section--wrapper">
-                                <img className="project-section__img" src={project.image} alt={project.title}/>
+                                <SketchComponent key={`${id}-1`} textureImage={project.image}/>
                             </div>
                             <div className="project-section--wrapper">
-                                <img className="project-section__img" src={project.image} alt={project.title}/>
+                                <SketchComponent key={`${id}-2`} textureImage={project.image}/>
                             </div>
                             <div className="project-section--wrapper">
-                                <img className="project-section__img" src={project.image} alt={project.title}/>
+                                <SketchComponent key={`${id}-3`} textureImage={project.image}/>
                             </div>
                             <div className="project-section--wrapper">
-                                <img className="project-section__img" src={project.image} alt={project.title}/>
+                                <SketchComponent key={`${id}-4`} textureImage={project.image}/>
                             </div>
                             <div className="project-section--wrapper">
-                                <img className="project-section__img" src={project.image} alt={project.title}/>
+                                <SketchComponent key={`${id}-5`} textureImage={project.image}/>
                             </div>
                             <div className="project-section--wrapper">
-                                <img className="project-section__img" src={project.image} alt={project.title}/>
+                                <SketchComponent key={`${id}-6`} textureImage={project.image}/>
                             </div>
                         </div>
                     </div>
