@@ -66,9 +66,21 @@
     }
   }
 
-  &__img {
+  &__box {
     width: 100%;
     padding: 5vw 0;
+    &--first {
+      height: 400px;
+    }
+    &--second {
+      height: 550px;
+    }
+    &--third {
+      height: 720px;
+    }
+    &--fourth {
+      height: 600px;
+    }
   }
 
   &__item-list {

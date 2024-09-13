@@ -30,10 +30,12 @@
     width: 55%;
   }
 
-  &__img {
+  &__box {
     width: 100%;
+    height: 300px;
     @media (min-width: 1200px) {
       width: 55%;
+      height: 35vw;
     }
   }
 
