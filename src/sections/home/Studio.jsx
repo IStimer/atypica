@@ -1,6 +1,7 @@
-import React from 'react'
-import img from "../../img/full1.jpg"
-import arrow from "../../assets/svgs/arrow.svg"
+import React from 'react';
+import img from "../../img/full1.jpg";
+import arrow from "../../assets/svgs/arrow.svg";
+import SketchComponent from "../../components/Sketch.jsx";
 
 const Studio = () => {
     return (
@@ -11,11 +12,13 @@ const Studio = () => {
                 </h2>
                 <p className="studio-section__description">
                     Un studio qui casse les codes ! Chez nous, pas de sites web ennuyeux ni d'applications ordinaires.
-                    nous sommes spécialisés dans la création d’expériences numériques folles et des plus atypiques
+                    Nous sommes spécialisés dans la création d'expériences numériques folles et des plus atypiques.
                 </p>
             </div>
             <div className="flex studio-section__content--secondary">
-            <img className="studio-section__img" src={img} alt="Visuel de l'équipe"/>
+                <div className="studio-section__box">
+                    <SketchComponent textureImage={img} />
+                </div>
                 <div className="flex studio-section__item-list">
                     <div className="studio-section__title--secondary">Services</div>
                     <div className="studio-section__item">Web design</div>
@@ -25,10 +28,9 @@ const Studio = () => {
                     <div className="studio-section__item">Motion</div>
                     <div className="studio-section__item">3D</div>
                 </div>
-
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Studio
+export default Studio;
