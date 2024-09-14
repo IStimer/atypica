@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
-const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad }) => {
+const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad, nextPageLoaded }) => {
     const progressBar = useRef(null)
     const preloader = useRef(null)
 
@@ -26,17 +26,12 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
                                     onComplete: () => {
                                         if (preloader.current) {
                                             onTransitionComplete()
+                                            if (!initialLoad) {
+                                                setIsContentVisible(true)
+                                                waitForNextPageLoad()
+                                            } else {
+                                                finishTransition()
                                             }
-                                        if (!initialLoad) {
-                                            setIsContentVisible(true)
-                                            gsap.to(preloader.current, {
-                                                y: '-100%',
-                                                duration: 0.5,
-                                                ease: 'power2.inOut',
-                                                onComplete: () => {
-                                                    setIsLoading(false)
-                                                }
-                                            })
                                         }
                                     }
                                 })
@@ -55,6 +50,31 @@ const PageTransition = ({ setIsLoading, setIsContentVisible, onTransitionComplet
             tl.kill()
         }
     }, [setIsLoading, setIsContentVisible, onTransitionComplete, initialLoad])
+
+    const waitForNextPageLoad = () => {
+        const checkNextPageLoaded = () => {
+            if (nextPageLoaded.current) {
+                finishTransition()
+            } else {
+                requestAnimationFrame(checkNextPageLoaded)
+            }
+        }
+        checkNextPageLoaded()
+    }
+
+    const finishTransition = () => {
+        if (preloader.current) {
+            gsap.to(preloader.current, {
+                delay: 0.2,
+                y: '-100%',
+                duration: 0.4,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    setIsLoading(false)
+                }
+            })
+        }
+    }
 
     return (
         <div className="preloader" ref={preloader}>

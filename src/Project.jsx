@@ -10,7 +10,7 @@ import image5 from './img/full5.jpg'
 import image6 from './img/6.jpg'
 import arrow from "./assets/svgs/arrow.svg"
 import {useNavigation} from './utils/NavigationContext'
-import SketchComponent from "./components/Sketch.jsx";
+import SketchComponent from "./components/Sketch.jsx"
 
 const projectData = {
     '1': {

@@ -4,5 +4,6 @@
   margin: 3vw 0;
   @media (min-width: 1200px) {
     height: clamp( 400px, 60vh, 1200px);
+    margin: 0;
   }
 }

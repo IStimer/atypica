@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from '../Home.jsx'
 import StudioPage from '../Studio.jsx'
@@ -12,6 +12,8 @@ const RoutesWithTransitions = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isContentVisible, setIsContentVisible] = useState(false)
     const [initialLoad, setInitialLoad] = useState(true)
+    const [nextPageLoaded, setNextPageLoaded] = useState(false)
+    const nextPageLoadedRef = useRef(false)
 
     useEffect(() => {
         if (initialLoad) {
@@ -19,13 +21,27 @@ const RoutesWithTransitions = () => {
             setIsContentVisible(false)
         } else if (isTransitioning) {
             setIsLoading(true)
-            setIsContentVisible(true) // Keep content visible during transitions
+            setIsContentVisible(true)
         }
     }, [isTransitioning, initialLoad])
 
     useEffect(() => {
         setInitialLoad(false)
     }, [])
+
+    useEffect(() => {
+        if (isLoading && !initialLoad) {
+            nextPageLoadedRef.current = true
+                setNextPageLoaded(true)
+        }
+    }, [isLoading, initialLoad])
+
+    useEffect(() => {
+        if (!isLoading) {
+            nextPageLoadedRef.current = false
+            setNextPageLoaded(false)
+        }
+    }, [isLoading])
 
     return (
         <>
@@ -40,6 +56,7 @@ const RoutesWithTransitions = () => {
                     setIsContentVisible={setIsContentVisible}
                     onTransitionComplete={handleTransitionComplete}
                     initialLoad={initialLoad}
+                    nextPageLoaded={nextPageLoadedRef}
                 />
             )}
         </>
