@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /public/
+Disallow: /search
+
+User-agent: Bingbot
+Allow: /public/
+Disallow: /search
+
