@@ -16,6 +16,7 @@ const Work = () => {
     const [isImageClicked, setIsImageClicked] = useState(false)
     const sectionRef = useRef(null)
     const [isTouchOrSmallDevice, setIsTouchOrSmallDevice] = useState(false)
+    const [isAnimating, setIsAnimating] = useState(false)
 
     useEffect(() => {
         const checkDeviceType = () => {
@@ -46,8 +47,10 @@ const Work = () => {
     }, [])
 
     const handleImageClick = (id, imageSrc, e) => {
+        if (isAnimating) return
         const hoverImage = hoverImageRef.current
         setIsImageClicked(true)
+        setIsAnimating(true)
 
         if (!isTouchOrSmallDevice) {
             gsap.to(hoverImage, {
@@ -69,7 +72,7 @@ const Work = () => {
     }
 
     const handleMouseEnter = (imageSrc, e) => {
-        if (isTouchOrSmallDevice) return
+        if (isTouchOrSmallDevice || isAnimating) return
         const hoverImage = hoverImageRef.current
         hoverImage.src = imageSrc
         hoverImage.style.display = 'block'
@@ -78,7 +81,7 @@ const Work = () => {
     }
 
     const handleMouseMove = () => {
-        if (isHovered && !isTouchOrSmallDevice) {
+        if (isHovered && !isTouchOrSmallDevice && !isAnimating) {
             updateImagePosition()
         }
     }
@@ -106,7 +109,7 @@ const Work = () => {
     }
 
     const handleMouseLeave = () => {
-        if (isTouchOrSmallDevice) return
+        if (isTouchOrSmallDevice || isAnimating) return
         const hoverImage = hoverImageRef.current
         if (!isImageClicked) {
             setIsHovered(false)
