@@ -66,6 +66,7 @@ const Water = ( { hover }) => {
                 vertexShader={waterVertexShader}
                 fragmentShader={waterFragmentShader}
                 uniforms={uniforms.current}
+                wireframe={true}
             />
         </mesh>
     )
@@ -77,7 +78,7 @@ const ContainerCanvasSea = () => {
     return (
         <section className="container-canvas-sea">
             <Canvas
-                camera={{ position: [2, 2, 6], fov: 10.5}}
+                camera={{ position: [2, 1.7, 6], fov: 10.5}}
                 onPointerOver={() => setHover(true)}
                 onPointerOut={() => setHover(false)}
             >
