@@ -12,8 +12,8 @@ const Footer = ({children}) => {
                     <a className="footer__item" href="mailto:bonjour@atypica.digital">bonjour@atypica.digital</a>
                 </div>
                 <div className="flex footer__col">
-                    <a className="footer__item" href="https://twitter.com">twitter</a>
-                    <a className="footer__item" href="https://instagram.com">instagram</a>
+                    <a className="footer__item" href="https://x.com/Atypica_d">twitter</a>
+                    <a className="footer__item" href="https://www.instagram.com/atypica_d">instagram</a>
                 </div>
             </div>
             {children}

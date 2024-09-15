@@ -59,8 +59,8 @@ const Header = ({ children }) => {
                 <a href="#!" onClick={openModal}>contact</a>
             </div>
             <div className="header--nav__col flex">
-                <a href="https://twitter.com">twitter</a>
-                <a href="https://instagram.com">instagram</a>
+                <a href="https://x.com/Atypica_d">twitter</a>
+                <a href="https://www.instagram.com/atypica_d">instagram</a>
             </div>
             {!mobileMenuOpen && (
                 <div>bayonne, fr</div>
