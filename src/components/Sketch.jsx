@@ -8,15 +8,7 @@ function SketchComponent({ textureImage }) {
     const [textureLoaded, setTextureLoaded] = useState(false);
 
     useEffect(() => {
-        console.log("SketchComponent mounted");
-        return () => {
-            console.log("SketchComponent unmounted");
-        };
-    }, []);
-
-    useEffect(() => {
         if (containerRef.current && textureLoaded) {
-            console.log("Initializing Sketch");
             const sketch = new Sketch({
                 dom: containerRef.current,
                 width: containerRef.current.offsetWidth,
@@ -25,19 +17,16 @@ function SketchComponent({ textureImage }) {
             });
 
             return () => {
-                console.log("Cleaning up Sketch");
                 sketch.isPlaying = false;
             };
         }
     }, [textureLoaded, textureImage]);
 
     useEffect(() => {
-        console.log("Loading texture");
         const loader = new THREE.TextureLoader();
         loader.load(
             textureImage,
             (texture) => {
-                console.log("Texture loaded successfully");
                 texture.format = THREE.RGBAFormat;
                 texture.minFilter = THREE.LinearFilter;
                 texture.magFilter = THREE.LinearFilter;
