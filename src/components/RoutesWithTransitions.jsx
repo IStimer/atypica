@@ -48,7 +48,7 @@ const RoutesWithTransitions = () => {
             <Routes location={location}>
                 <Route path="/" element={isContentVisible ? <Home /> : null} />
                 <Route path="/studio" element={isContentVisible ? <StudioPage /> : null} />
-                <Route path="/project/:id" element={isContentVisible ? <Project /> : null} />
+                <Route path="/projet/:slug" element={isContentVisible ? <Project /> : null} />
             </Routes>
             {isLoading && (
                 <PageTransition

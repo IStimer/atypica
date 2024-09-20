@@ -55,87 +55,99 @@ const projectData = {
     }
 }
 
+const titleToSlug = (title) => {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+// Fonction pour trouver l'ID à partir du slug
+const findIdBySlug = (slug) => {
+    return Object.entries(projectData).find(([id, project]) =>
+        titleToSlug(project.title) === slug
+    )?.[0];
+}
+
+// Fonction pour obtenir le slug suivant
+const getNextSlug = (currentId) => {
+    const nextId = (parseInt(currentId) % Object.keys(projectData).length) + 1;
+    return titleToSlug(projectData[nextId.toString()].title);
+}
+
 const Project = () => {
-    const {id} = useParams()
+    const { slug } = useParams()
     const navigate = useNavigate()
-    const {navigate: startTransition} = useNavigation()
-    const project = projectData[id]
-
-    if (!project) {
-        return <div>Projet non trouvé</div>
-    }
-
-    const nextId = (parseInt(id) % Object.keys(projectData).length) + 1
-    const nextProject = projectData[nextId]
-
-    const handleNextProject = () => {
-        startTransition(`/project/${nextId}`, navigate)
-    }
+    const { navigate: startTransition } = useNavigation()
+    const [currentProject, setCurrentProject] = useState(null)
+    const [currentId, setCurrentId] = useState(null)
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [id])
+        const id = findIdBySlug(slug)
+        if (id && projectData[id]) {
+            setCurrentProject(projectData[id])
+            setCurrentId(id)
+            window.scrollTo(0, 0)
+        } else {
+            navigate('/') // Rediriger vers la page d'accueil si le projet n'existe pas
+        }
+    }, [slug, navigate])
+
+    if (!currentProject) {
+        return null // ou un composant de chargement
+    }
+
+    const nextSlug = getNextSlug(currentId)
+
+    const handleNextProject = (e) => {
+        e.preventDefault();
+        startTransition(`/projet/${nextSlug}`, navigate);
+    }
 
     return (
-        <>
-            <Wrapper>
-                <Header/>
-                <div className="project-section">
-                    <div className="project-section__title flex">
-                        <h1>{project.title}</h1>
-                    </div>
-                    <div className="project-section__content flex">
-                        <div className="project-section__content--left secondary-side flex">
-                            <div className="project-section__content--top flex">
-                                <h2 className="project-section__sub-title">Aperçu
-                                    <img className="project-section__arrow" src={arrow} alt="arrow"/>
-                                </h2>
-                                <p className="project-section__description">
-                                    {project.description}
-                                </p>
-                            </div>
-                            <div className="project-section__content--bottom flex">
-                                <h2 className="project-section__sub-title">Détails
-                                    <img className="project-section__arrow" src={arrow} alt="arrow"/>
-                                </h2>
-                                <div className="project-section__description">
-                                    <p>{project.spec}</p>
-                                    <p>{project.time}</p>
-                                    <p>tette</p>
-                                </div>
-                            </div>
+        <Wrapper key={slug}>
+            <Header/>
+            <div className="project-section">
+                <div className="project-section__title flex">
+                    <h1>{currentProject.title}</h1>
+                </div>
+                <div className="project-section__content flex">
+                    <div className="project-section__content--left secondary-side flex">
+                        <div className="project-section__content--top flex">
+                            <h2 className="project-section__sub-title">Aperçu
+                                <img className="project-section__arrow" src={arrow} alt="arrow"/>
+                            </h2>
+                            <p className="project-section__description">
+                                {currentProject.description}
+                            </p>
                         </div>
-                        <div className="project-section__content--right main-side">
-                            <div className="project-section--wrapper">
-                                <SketchComponent key={`${id}-1`} textureImage={project.image}/>
-                            </div>
-                            <div className="project-section--wrapper">
-                                <SketchComponent key={`${id}-2`} textureImage={project.image}/>
-                            </div>
-                            <div className="project-section--wrapper">
-                                <SketchComponent key={`${id}-3`} textureImage={project.image}/>
-                            </div>
-                            <div className="project-section--wrapper">
-                                <SketchComponent key={`${id}-4`} textureImage={project.image}/>
-                            </div>
-                            <div className="project-section--wrapper">
-                                <SketchComponent key={`${id}-5`} textureImage={project.image}/>
-                            </div>
-                            <div className="project-section--wrapper">
-                                <SketchComponent key={`${id}-6`} textureImage={project.image}/>
+                        <div className="project-section__content--bottom flex">
+                            <h2 className="project-section__sub-title">Détails
+                                <img className="project-section__arrow" src={arrow} alt="arrow"/>
+                            </h2>
+                            <div className="project-section__description">
+                                <p>{currentProject.spec}</p>
+                                <p>{currentProject.time}</p>
+                                <p>{currentProject.type}</p>
                             </div>
                         </div>
                     </div>
-                    <div className="project-section__next-project">
-                        <h2 className="project-section__next-project__title">Projet suivant</h2>
-                        <h3 className="project-section__next-project--project-name">
-                            <a href="#!" onClick={handleNextProject}>{nextProject.title}</a>
-                        </h3>
+                    <div className="project-section__content--right main-side">
+                        {[1, 2, 3, 4, 5, 6].map((index) => (
+                            <div key={`${slug}-${index}`} className="project-section--wrapper">
+                                <SketchComponent textureImage={currentProject.image}/>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <Footer/>
-            </Wrapper>
-        </>
+                <div className="project-section__next-project">
+                    <h2 className="project-section__next-project__title">Projet suivant</h2>
+                    <h3 className="project-section__next-project--project-name">
+                        <a onClick={handleNextProject}>
+                            {projectData[(parseInt(currentId) % Object.keys(projectData).length) + 1].title}
+                        </a>
+                    </h3>
+                </div>
+            </div>
+            <Footer/>
+        </Wrapper>
     )
 }
 
