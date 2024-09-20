@@ -59,14 +59,12 @@ const titleToSlug = (title) => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-// Fonction pour trouver l'ID à partir du slug
 const findIdBySlug = (slug) => {
     return Object.entries(projectData).find(([id, project]) =>
         titleToSlug(project.title) === slug
     )?.[0];
 }
 
-// Fonction pour obtenir le slug suivant
 const getNextSlug = (currentId) => {
     const nextId = (parseInt(currentId) % Object.keys(projectData).length) + 1;
     return titleToSlug(projectData[nextId.toString()].title);
@@ -86,12 +84,12 @@ const Project = () => {
             setCurrentId(id)
             window.scrollTo(0, 0)
         } else {
-            navigate('/') // Rediriger vers la page d'accueil si le projet n'existe pas
+            navigate('/')
         }
     }, [slug, navigate])
 
     if (!currentProject) {
-        return null // ou un composant de chargement
+        return null
     }
 
     const nextSlug = getNextSlug(currentId)
