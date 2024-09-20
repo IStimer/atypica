@@ -46,10 +46,10 @@ const Water = ( { hover }) => {
     const targetIterations = useRef(4)
     const targetFrequency = useRef(3)
 
-    useEffect(() => {
-        targetIterations.current = hover ? 1 : 4
-        targetFrequency.current = hover ? 1.5 : 3
-    }, [hover])
+    // useEffect(() => {
+    //     targetIterations.current = hover ? 1 : 4
+    //     targetFrequency.current = hover ? 1.5 : 3
+    // }, [hover])
 
     useFrame(({ clock }) => {
         uniforms.current.uTime.value = clock.getElapsedTime()

@@ -1,16 +1,8 @@
-@keyframes fadeInUp {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
 .header--banner {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100%;
   position: relative;
   top: 0;
@@ -27,9 +19,4 @@
 .header--banner-svg svg {
   width: 100%;
   height: 100%;
-}
-
-.animated-letter {
-  transform: translateY(100%);
-  animation: fadeInUp 0.4s ease-in-out forwards;
 }
